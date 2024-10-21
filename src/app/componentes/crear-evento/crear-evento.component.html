@@ -1,0 +1,50 @@
+<form >
+    <div>
+        <label>Nombre: </label>
+        <input type="text" />
+    </div>
+ 
+ 
+    <div>
+        <label>Descripción: </label>
+        <textarea ></textarea>   
+    </div>
+ 
+ 
+    <div class="col-6">
+        <label class="form-label">Tipo: </label>
+        <select formControlName="tipo" class="form-select" >
+            <option value="">Seleccione un tipo</option>
+            @for (item of tiposDeEvento; track $index) {
+                <option value="{{item}}">{{item}}</option>
+            }
+        </select>
+     </div>
+ 
+ 
+    <div>
+        <label>Dirección: </label>
+        <input type="text" />
+    </div>
+ 
+ 
+    <div>
+        <label>Ciudad: </label>
+        <input type="text" />
+    </div>
+ 
+ 
+    <div>
+        <label>Imagen evento: </label>
+        <input type="file" (change)="onFileChange($event, 'portada')" />
+     </div>
+     
+     
+     <div>
+        <label>Imagen localidades: </label>
+        <input type="file" (change)="onFileChange($event, 'localidades')" />
+     </div>
+ 
+ 
+    <button type="submit" >Crear evento</button>
+ </form>
