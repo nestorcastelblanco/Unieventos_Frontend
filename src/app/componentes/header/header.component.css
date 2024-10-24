@@ -1,0 +1,65 @@
+/* Estilos generales */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilos para el encabezado */
+  .header-container {
+    background-color: #007BFF; /* Color de fondo azul */
+    color: white;
+    padding: 20px;
+    text-align: center; /* Centrar el texto */
+  }
+  
+  /* Estilo para el título */
+  .title {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  /* Estilo de la lista de navegación */
+  .nav-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Estilo para los enlaces */
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+  }
+  
+  .nav-link:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Estilo de los enlaces en el encabezado */
+  .nav-list li {
+    margin: 0 10px;
+  }
+  
+  /* Estilo de los botones como enlaces de navegación */
+  .btn {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none; /* Sin borde para que parezca un enlace */
+    background-color: transparent; /* Fondo transparente */
+  }
+  
+  .btn:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
