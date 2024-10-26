@@ -1,33 +1,35 @@
 <div class="container">
-    <div class="card">
-      <div class="card-header p-4">
-        <h5 class="mb-0">
-          <i class="fa-solid fa-right-to-bracket me-3"></i>Inicio de Sesión
-        </h5>
-      </div>
-      <div class="card-body p-4">
-        <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="login()">
-          <div class="col-12">
-            <label class="form-label">Email:</label>
-            <input type="email" class="form-control" formControlName="email" />
-            @if (campoEsValido('email')) {
-              <i class="fa-solid fa-check text-success"></i> <!-- Ícono de validación -->
-            }
-          </div>
-          <div class="col-12">
-            <label class="form-label">Contraseña:</label>
-            <input type="password" class="form-control" formControlName="password" />
-            @if (campoEsValido('password')) {
-              <i class="fa-solid fa-check text-success"></i> <!-- Ícono de validación -->
-            }
-          </div>
-          <div class="col-12 text-center">
-            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
-              <i class="fa-solid fa-sign-in-alt me-2"></i>Iniciar Sesión
-            </button>
-          </div>
-        </form>
-      </div>
+  <div class="card">
+    <div class="card-header p-4">
+      <h5 class="mb-0">
+        <i class="fa-solid fa-right-to-bracket me-3"></i>Inicio de Sesión
+      </h5>
+    </div>
+    <div class="card-body p-4">
+      <form class="row g-3" [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="col-12">
+          <label class="form-label">Email:</label>
+          <input type="email" class="form-control" formControlName="email" />
+          @if (campoEsValido('email')) {
+            <i class="fa-solid fa-check text-success"></i>
+          }
+        </div>
+        <div class="col-12">
+          <label class="form-label">Contraseña:</label>
+          <input type="password" class="form-control" formControlName="password" />
+          @if (campoEsValido('password')) {
+            <i class="fa-solid fa-check text-success"></i>
+          }
+        </div>
+        <div class="col-12 text-center button-container">
+          <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">
+            <i class="fa-solid fa-sign-in-alt me-2"></i>Iniciar Sesión
+          </button>
+          <button type="button" class="btn btn-secondary btn-recover" (click)="abrirVentanaRecuperacion()">
+            Enviar Código de Recuperación
+          </button>
+        </div>
+      </form>
     </div>
   </div>
-  
+</div>

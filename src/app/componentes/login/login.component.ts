@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private router: Router) { 
     this.crearFormulario();
   }
 
@@ -23,10 +24,16 @@ export class LoginComponent {
   }
 
   public login() {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value);
+      this.router.navigate(['/inicio']); // Redirige a la página de login
+    }
   }
 
   public campoEsValido(campo: string): boolean {
     return this.loginForm.controls[campo].valid && this.loginForm.controls[campo].touched;
+  }
+  public abrirVentanaRecuperacion(){
+    this.router.navigate(['/enviar-codigo']);
   }
 }

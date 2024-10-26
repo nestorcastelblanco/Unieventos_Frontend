@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; // Importa AbstractControlOptions
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -12,7 +13,7 @@ export class RegistroComponent {
 
   registroForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private router: Router) { 
     this.crearFormulario();
   }
 
@@ -36,6 +37,9 @@ export class RegistroComponent {
   }
 
   public registrar() {
-    console.log(this.registroForm.value);
+    if (this.registroForm.valid) {
+      console.log(this.registroForm.value);
+      this.router.navigate(['/activar-cuenta']); // Redirige a la página de login
+    }
   }
 }

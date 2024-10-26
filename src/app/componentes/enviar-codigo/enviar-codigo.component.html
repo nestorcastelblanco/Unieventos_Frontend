@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="card">
+      <div class="card-header p-4">
+        <h5 class="mb-0">
+          <i class="fa-solid fa-user-plus me-3"></i>Enviar Código de Recuperación
+        </h5>
+      </div>
+      <div class="card-body p-4">
+        <form class="row g-3" [formGroup]="enviarForm" (ngSubmit)="enviarCodigo()">
+          <div class="col-6">
+            <label class="form-label">Correo:</label>
+            <input type="text" class="form-control" formControlName="correo" />
+          </div>
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="enviarForm.invalid">
+              <i class="fa-solid fa-plus me-2"></i>Enviar Código de Recuperación
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

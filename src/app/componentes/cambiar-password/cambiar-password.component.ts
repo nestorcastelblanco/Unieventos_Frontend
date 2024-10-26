@@ -19,6 +19,8 @@ export class CambiarPasswordComponent {
 
   private crearFormulario() {
     this.registroForm = this.formBuilder.group({
+      correo: ['', [Validators.required, Validators.email]],
+      codigo: ['', Validators.required, Validators.minLength(6), Validators.maxLength(6)],
       password: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(7)]],
       confirmaPassword: ['', [Validators.required]]
     }, { validators: this.passwordsMatchValidator } as AbstractControlOptions);
