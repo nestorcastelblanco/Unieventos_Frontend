@@ -20,8 +20,8 @@ export class CambiarPasswordComponent {
   private crearFormulario() {
     this.registroForm = this.formBuilder.group({
       correo: ['', [Validators.required, Validators.email]],
-      codigo: ['', Validators.required, Validators.minLength(6), Validators.maxLength(6)],
-      password: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(7)]],
+      codigo: ['', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.maxLength(10), Validators.maxLength(6)]],
       confirmaPassword: ['', [Validators.required]]
     }, { validators: this.passwordsMatchValidator } as AbstractControlOptions);
   }
@@ -34,9 +34,6 @@ export class CambiarPasswordComponent {
   }
 
   public cambiarContrasenia() {
-    if (this.registroForm.valid) {
-      console.log(this.registroForm.value);
       this.router.navigate(['/login']); // Redirige a la página de login
-    }
   }
 }
