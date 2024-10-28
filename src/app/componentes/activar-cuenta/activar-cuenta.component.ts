@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { AuthService } from '../../servicios/auth.service';
+import { ActivarCuentaDTO } from '../../dto/CuentaDTOs/ActivarCuentaDTO';
 
 @Component({
   selector: 'app-activar-cuenta',
@@ -13,7 +16,7 @@ export class ActivarCuentaComponent {
   
   registroForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
     this.crearFormulario();
   }
 
@@ -25,10 +28,30 @@ export class ActivarCuentaComponent {
   }
 
   public activarCuenta() {
-    if (this.registroForm.valid) {
-      console.log(this.registroForm.value);
-      this.router.navigate(['/login']); // Redirige a la página de login
-    }
+    const activarCuentaDTO = this.registroForm.value as ActivarCuentaDTO; // Asegúrate de tener un DTO adecuado para esta operación
+    
+    this.authService.activarCuenta(activarCuentaDTO).subscribe({
+      next: (data) => {
+        Swal.fire({
+          title: 'Cuenta activada',
+          text: 'La cuenta se ha activado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: error.error.respuesta,
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
   }
+  
 
 }
+
+

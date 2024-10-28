@@ -26,7 +26,7 @@ export class EnviarCodigoComponent {
   public enviarCodigo() {
     if (this.enviarForm.valid) {
       console.log(this.enviarForm.value);
-      this.router.navigate(['/cambiar-password']); // Redirige a la página de login
+      this.router.navigate(['/cambiar-password']); // Redirige a la página de Cambiar Contraseña
     }
   }
 

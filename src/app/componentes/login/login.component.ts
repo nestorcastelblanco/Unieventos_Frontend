@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../servicios/auth.service';
+import Swal from 'sweetalert2';
+import { LoginDTO } from '../../dto/CuentaDTOs/LoginDTO';
+import { TokenService } from '../../servicios/token.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,23 +17,40 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenService: TokenService) { 
     this.crearFormulario();
   }
 
   private crearFormulario() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(7)]]
     });
   }
 
   public login() {
-    if (this.loginForm.valid) {
-      console.log(this.loginForm.value);
-      this.router.navigate(['/inicio']); // Redirige a la página de login
-    }
-  }
+
+
+    const loginDTO = this.loginForm.value as LoginDTO;
+   
+   
+    this.authService.iniciarSesion(loginDTO).subscribe({
+      next: (data) => {
+        this.tokenService.login(data.respuesta.token);
+      },
+      error: (error) => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: error.error.respuesta
+        });
+      },
+    });
+
+    this.router.navigate(['/inicio']);
+  
+   }
+   
 
   public campoEsValido(campo: string): boolean {
     return this.loginForm.controls[campo].valid && this.loginForm.controls[campo].touched;
