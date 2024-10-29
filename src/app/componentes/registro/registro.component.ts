@@ -65,4 +65,7 @@ export class RegistroComponent {
       }
     });
    }
+   public volver(){
+    this.router.navigate(['/login']);
+   }
 }

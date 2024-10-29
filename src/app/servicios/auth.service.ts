@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/TokenDTOs/MensajeDTO';
 import { CrearCuentaDTO } from '../dto/CuentaDTOs/CrearCuentaDTO';
 import { ActivarCuentaDTO } from '../dto/CuentaDTOs/ActivarCuentaDTO';
+import { CambiarPasswordDTO } from '../dto/CuentaDTOs/CambiarPasswordDTO';
+import { EnviarCodigoDTO } from '../dto/CuentaDTOs/EnviarCodigoDTO';
 
 
 @Injectable({
@@ -29,7 +31,14 @@ export class AuthService {
 
  public activarCuenta(activarCuentaDTO: ActivarCuentaDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/activar-cuenta`, activarCuentaDTO);
-   }
- 
+}
+
+public cambiarPassword(CambiarPasswordDTO: CambiarPasswordDTO): Observable<MensajeDTO> {
+   return this.http.post<MensajeDTO>(`${this.authURL}/cambiar-password`, CambiarPasswordDTO);
+}
+
+public enviarCodigo(enviarCodigoDTO: EnviarCodigoDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/enviar-codigo-recuperacion`, enviarCodigoDTO);
+}
 }
 

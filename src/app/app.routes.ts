@@ -13,8 +13,8 @@ import { EnviarCodigoComponent } from './componentes/enviar-codigo/enviar-codigo
 
 
 export const routes: Routes = [
-   { path: '', component: InicioComponent },
-   { path: 'login', component: LoginComponent },
+   { path: '', component: LoginComponent },
+   { path: 'Inicio', component: InicioComponent },
    { path: 'registro', component: RegistroComponent },
    { path: "historial-eventos", component: HistorialEventosComponent },
    { path: 'gestion-eventos', component: GestionEventosComponent },

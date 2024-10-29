@@ -98,4 +98,23 @@
   .d-flex {
     display: flex;
   }
+
+ /* Estilo del botón de retroceso */
+.back-button {
+  background-color: #FF4C4C; /* Rojo */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  height: 38px; /* Para alinearlo con el botón principal */
+  width: 100%; /* Ocupa todo el ancho */
+  margin-top: 10px; /* Espacio entre el botón de recuperación y el botón atrás */
+  text-align: center; /* Alinea el texto en el centro */
+}
+
+.back-button:hover {
+  background-color: #FF3333; /* Color del botón al pasar el mouse */
+}
   

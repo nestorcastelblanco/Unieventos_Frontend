@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../servicios/auth.service';
+import Swal from 'sweetalert2';
+import { EnviarCodigoDTO } from '../../dto/CuentaDTOs/EnviarCodigoDTO';
 
 @Component({
   selector: 'app-enviar-codigo',
@@ -13,7 +16,7 @@ export class EnviarCodigoComponent {
 
   enviarForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router,  private authService: AuthService) { 
     this.crearFormulario();
   }
 
@@ -24,11 +27,36 @@ export class EnviarCodigoComponent {
   }
 
   public enviarCodigo() {
-    if (this.enviarForm.valid) {
-      console.log(this.enviarForm.value);
-      this.router.navigate(['/cambiar-password']); // Redirige a la página de Cambiar Contraseña
-    }
-  }
+    
+    const enviarCodigoDTO = this.enviarForm.value as EnviarCodigoDTO ;
 
-
+    this.authService.enviarCodigo(enviarCodigoDTO).subscribe({
+      next: (data) => {
+          // Verifica si el mensaje es accesible en `data.mensaje`
+          console.log("Respuesta exitosa:", data);
+  
+          Swal.fire({
+              title: 'Código Enviado',
+              text: data.respuesta || 'El código se ha enviado correctamente',
+              icon: 'success',
+              confirmButtonText: 'Continuar'
+          });
+          this.router.navigate(['/cambiar-password']);
+      },
+      error: (error) => {
+          const errorMessage = error?.error?.mensaje || 'Hubo un problema al enviar el código. Inténtelo de nuevo más tarde.';
+          console.error("Error en la solicitud:", error);
+  
+          Swal.fire({
+              title: 'Error',
+              text: errorMessage,
+              icon: 'error',
+              confirmButtonText: 'Aceptar'
+          });
+      }
+  });  
+}
+public volver(){
+  this.router.navigate(['/login']);
+}
 }

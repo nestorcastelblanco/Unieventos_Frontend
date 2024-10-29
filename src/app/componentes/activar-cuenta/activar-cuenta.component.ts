@@ -50,8 +50,10 @@ export class ActivarCuentaComponent {
       }
     });
   }
-  
 
+  public volver(){
+    this.router.navigate(['/registro']);
+   }
 }
 
 
