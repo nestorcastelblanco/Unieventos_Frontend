@@ -27,7 +27,7 @@ export class RegistroComponent {
       nombre: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.email]],
       telefono: ['', [Validators.required, Validators.maxLength(10)]],
-      password: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(7)]],
+      password: ['', [Validators.required, Validators.maxLength(15), Validators.minLength(7)]],
       confirmaPassword: ['', [Validators.required]] // Agrega el campo para confirmar contraseña
     }, { validators: this.passwordsMatchValidator } as AbstractControlOptions);
   }

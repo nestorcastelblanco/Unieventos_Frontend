@@ -33,7 +33,7 @@ public isLogged(): boolean {
 
 public login(token: string) {
   this.setToken(token);
-  this.router.navigate(["/"]);
+  this.router.navigate(["/inicio"]);
 }
 
 public logout() {
