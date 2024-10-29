@@ -10,16 +10,10 @@
         <div class="col-12">
           <label class="form-label">Email:</label>
           <input type="email" class="form-control" formControlName="correo" />
-          @if (campoEsValido('email')) {
-            <i class="fa-solid fa-check text-success"></i>
-          }
         </div>
         <div class="col-12">
           <label class="form-label">Contraseña:</label>
           <input type="password" class="form-control" formControlName="password" />
-          @if (campoEsValido('password')) {
-            <i class="fa-solid fa-check text-success"></i>
-          }
         </div>
         <div class="col-12 text-center button-container"> 
           <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">

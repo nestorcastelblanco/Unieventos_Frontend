@@ -30,33 +30,38 @@ export class LoginComponent {
   }
 
   public login() {
-
     const loginDTO = this.loginForm.value as LoginDTO;
-
-    console.log("Datos de login:", loginDTO);
-
+    console.log(loginDTO);
     this.authService.iniciarSesion(loginDTO).subscribe({
-      
       next: (data) => {
         Swal.fire({
-          title : 'Inicio de Sesion Correcto',
+          title: 'Inicio de Sesion Correcto',
           text: 'Las credenciales son validas',
-          icon :'success',
-          confirmButtonText : "Ingresar"
-        })
+          icon: 'success',
+          confirmButtonText: "Ingresar",
+          customClass: {
+            title: 'swal-title-custom',
+            htmlContainer: 'swal-text-custom'
+          }
+        });
         this.tokenService.login(data.respuesta.token);
         this.router.navigate(['/Inicio']);
       },
       error: (error) => {
         Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: error.error.respuesta,
-            confirmButtonText : 'Reintentar'
+          icon: 'error',
+          title: 'Error',
+          text: error.error.respuesta,
+          confirmButtonText: 'Reintentar',
+          customClass: {
+            title: 'swal-title-custom',
+            htmlContainer: 'swal-text-custom'
+          }
         });
       },
-    });  
-   }
+    });
+  }
+  
    
 
   public campoEsValido(campo: string): boolean {
