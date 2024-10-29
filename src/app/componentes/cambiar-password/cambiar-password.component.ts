@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../servicios/auth.service';
+import { CambiarPasswordDTO } from '../../dto/CuentaDTOs/CambiarPasswordDTO';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cambiar-password',
@@ -13,31 +16,43 @@ export class CambiarPasswordComponent {
 
   registroForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
     this.crearFormulario();
   }
 
   private crearFormulario() {
     this.registroForm = this.formBuilder.group({
+      codigoVerificacion: ['', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]],
+      passwordNueva: ['', [Validators.required, Validators.maxLength(10)]],
       correo: ['', [Validators.required, Validators.email]],
-      codigo: ['', [Validators.required, Validators.maxLength(6), Validators.minLength(6)]],
-      password: ['', [Validators.required, Validators.maxLength(10)]],
-      confirmaPassword: ['', [Validators.required]]
-    }, { validators: this.passwordsMatchValidator } as AbstractControlOptions);
+    })
   }
 
-  passwordsMatchValidator(formGroup: FormGroup) {
-    const password = formGroup.get('password')?.value;
-    const confirmaPassword = formGroup.get('confirmaPassword')?.value;
-
-    return password === confirmaPassword ? null : { passwordsMismatch: true };
+  public cambiarPassword() {
+    // Suponemos que el formulario contiene un campo para la nueva contraseña
+    const cambioPasswordDTO = this.registroForm.value as CambiarPasswordDTO;
+  
+    this.authService.cambiarPassword(cambioPasswordDTO).subscribe({
+      next: (data) => {
+        Swal.fire({
+          title: 'Contraseña cambiada',
+          text: 'La contraseña se ha cambiado correctamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+        this.router.navigate(['/login']); // Redirige a la página de inicio de sesión
+      },
+      error: (error) => {
+        Swal.fire({
+          title: 'Error',
+          text: error.error.respuesta || 'Ocurrió un error al cambiar la contraseña',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    });
   }
-
-  public cambiarContrasenia() {
-
-    if (this.registroForm.valid) {
-      console.log(this.registroForm.value);
-      this.router.navigate(['/login']); // Redirige a la página de login
-    }
-  }
+  public volver(){
+    this.router.navigate(['/enviar-codigo']);
+   }
 }

@@ -37,6 +37,7 @@ export class LoginComponent {
     this.authService.iniciarSesion(loginDTO).subscribe({
       next: (data) => {
         this.tokenService.login(data.respuesta.token);
+        this.router.navigate(['/historial-eventos']);
       },
       error: (error) => {
         Swal.fire({
@@ -45,10 +46,7 @@ export class LoginComponent {
             text: error.error.respuesta
         });
       },
-    });
-
-    this.router.navigate(['/inicio']);
-  
+    });  
    }
    
 
@@ -57,5 +55,9 @@ export class LoginComponent {
   }
   public abrirVentanaRecuperacion(){
     this.router.navigate(['/enviar-codigo']);
+  }
+
+  public abrirVentanaRegistro(){
+    this.router.navigate(['/registro']);
   }
 }
