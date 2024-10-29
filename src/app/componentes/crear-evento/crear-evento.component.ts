@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PublicoService } from '../../servicios/publico.service';
 
 @Component({
   selector: 'app-crear-evento',
@@ -12,10 +13,15 @@ export class CrearEventoComponent {
 
   crearEventoForm!: FormGroup;
   tiposDeEvento: string[];
+  ciudades: string[];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private publicoService: PublicoService) {
     this.crearFormulario();
-    this.tiposDeEvento = ['Concierto', 'Fiesta', 'Teatro', 'Deportes'];
+    this.tiposDeEvento = [];
+    this.ciudades = [];
+    this.listarCiudades();
+    this.listarTipos();
+
   }
 
   private crearFormulario() {
@@ -52,6 +58,27 @@ export class CrearEventoComponent {
    public crearEvento(){
     console.log(this.crearEventoForm.value);
    }
+
+   public listarTipos(){
+    this.publicoService.listarTipos().subscribe({
+      next: (data) => {
+        this.tiposDeEvento = data.respuesta
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+   }
    
+   public listarCiudades(){
+    this.publicoService.listarCiudades().subscribe({
+      next: (data) => {
+        this.ciudades = data.respuesta
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
+   }
    
 }

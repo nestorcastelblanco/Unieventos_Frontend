@@ -11,13 +11,9 @@ import { CommonModule } from '@angular/common';
 })
 export class InicioComponent {
   public eventos: any[]; // Declaración de la variable `eventos`
-  public tiposEventos: any[]; // Declaración de la variable `tipos'
-  public ciudadesEventos: any[]; // Declaración de la variable `ciudades'
 
   constructor(private publicoService: PublicoService) {
     this.eventos = [];
-    this.tiposEventos = [];
-    this.ciudadesEventos = [];
     this.obtenerEventos();
   }
 
