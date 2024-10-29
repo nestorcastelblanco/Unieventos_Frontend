@@ -1,4 +1,4 @@
-import { LocalidadDTO } from "./localidad-dto";
+import { LocalidadDTO } from "./LocalidadDTO";
 
 
 
