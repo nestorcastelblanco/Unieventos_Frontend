@@ -8,18 +8,20 @@ import { HistorialEventosComponent } from './componentes/historial-eventos/histo
 import { CambiarPasswordComponent } from './componentes/cambiar-password/cambiar-password.component';
 import { ActivarCuentaComponent } from './componentes/activar-cuenta/activar-cuenta.component';
 import { EnviarCodigoComponent } from './componentes/enviar-codigo/enviar-codigo.component';
+import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
 
 
 
 
 export const routes: Routes = [
    { path: '', component: LoginComponent },
-   { path: 'Inicio', component: InicioComponent },
+   { path: 'inicio', component: InicioComponent },
    { path: 'registro', component: RegistroComponent },
    { path: "historial-eventos", component: HistorialEventosComponent },
    { path: 'gestion-eventos', component: GestionEventosComponent },
    { path: 'cambiar-password', component: CambiarPasswordComponent },
    { path: 'activar-cuenta', component: ActivarCuentaComponent },
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
+   { path: 'pagar-evento', component: PagosEventoComponent },
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];

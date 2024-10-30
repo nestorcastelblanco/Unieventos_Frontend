@@ -5,17 +5,18 @@ import { AuthService } from '../../servicios/auth.service';
 import Swal from 'sweetalert2';
 import { LoginDTO } from '../../dto/CuentaDTOs/LoginDTO';
 import { TokenService } from '../../servicios/token.service';
-import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
+import { HeaderComponent } from "../header/header.component";
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   loginForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenService: TokenService) { 
@@ -45,7 +46,7 @@ export class LoginComponent {
           }
         });
         this.tokenService.login(data.respuesta.token);
-        this.router.navigate(['/Inicio']);
+        this.router.navigate(['/inicio']);
       },
       error: (error) => {
         Swal.fire({
