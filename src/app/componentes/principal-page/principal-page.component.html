@@ -177,164 +177,29 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/asd.jpeg?alt=media&token=6d07ff20-92c2-4ad4-849a-858414a9ea1e" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Concierto Zion y Lennox</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+          @for (item of eventos; track $index) {
+            <div class="col">
+              <div class="card shadow h-100">
+                <img src={{item.imagenPortada}} alt="Descripción de la imagen" width=auto height="300px">
+                <div class="card-body">
+                  <h3>
+                    <p class="card-text">{{item.nombre}}</p>
+                  </h3>
+                  <p class="card-text"></p>{{item.descripcion}}
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group mt-2">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                    <small class="text-body-secondary">{{item.direccion}}</small>
+                  </div>
                 </div>
-                <small class="text-body-secondary">9 mins</small>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/fe.jpeg?alt=media&token=963b770e-9ac9-45c2-9e52-85bbc2398663" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Concierto Feid</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/huge_avatar.jpeg?alt=media&token=990de563-3352-4ced-9a00-db0482b8c6e0" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Concierto Arcangel</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/images%20(1).jpeg?alt=media&token=337a272a-6e96-4985-aba5-03514d370715" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">MEGALAND</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/images.jpeg?alt=media&token=9ced37ab-be67-4d55-a305-2025328cc475" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Rock Festival</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/images1.jpeg?alt=media&token=8c64a764-d26b-4faf-96bd-b92acbc38c88" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Estereo Picnic</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/images2.jpeg?alt=media&token=066691eb-fc05-4995-b14f-a9ad576e07f9" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Rock al Parque</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/masdoda.jpeg?alt=media&token=1117d323-5e4a-40df-bb52-2f10e88e0d3d" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Concierto Don Omar</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/moda.jpeg?alt=media&token=9649bf6b-ea52-40bf-bc47-2ddc1c77e92c" class="bd-placeholder-img card-img-top custom-img" alt="Descripción de la imagen" width="200px" height="300px">
-            <div class="card-body">
-              <h3>
-                <p class="card-text">Fashion Show</p>
-              </h3>
-              <p class="card-text">Prepárate para una noche inolvidable llena de música, luces, y pura emoción. Este [fecha del evento], el escenario se iluminará con la energía de [Nombre del Artista/Banda], quien traerá sus mayores éxitos y nuevas canciones en un show espectacular.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
+          }         
         </div>
       </div>
     </div>
-  </div>
+
 
 </main>
 

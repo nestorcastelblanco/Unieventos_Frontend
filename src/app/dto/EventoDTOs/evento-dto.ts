@@ -1,7 +1,5 @@
 import { LocalidadDTO } from "./LocalidadDTO";
 
-
-
 export interface EventoDTO {
    id:string,
    nombre:string,

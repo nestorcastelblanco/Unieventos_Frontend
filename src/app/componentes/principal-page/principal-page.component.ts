@@ -5,6 +5,7 @@ import { HeaderComponent } from "../../././componentes/header/header.component";
 import { FooterComponent } from "../../././componentes/footer/footer.component";
 import { CarruselImagenesComponent } from "../../././componentes/carrusel-imagenes/carrusel-imagenes.component";
 import { PublicoService } from '../../servicios/publico.service';
+import { EventoDTO } from '../../dto/EventoDTOs/evento-dto';
 
 @Component({
   selector: 'app-principal-page',
@@ -14,7 +15,7 @@ import { PublicoService } from '../../servicios/publico.service';
   styleUrl: './principal-page.component.css'
 })
 export class PrincipalPageComponent {
-  public eventos: any[]; // Declaración de la variable `eventos`
+  public eventos: EventoDTO[]; // Declaración de la variable `eventos`
 
   constructor(private publicoService: PublicoService) {
     this.eventos = [];
