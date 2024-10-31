@@ -3,6 +3,7 @@ import { EventosService } from '../../servicios/eventos.service';
 import { RouterModule } from '@angular/router';
 import { EventoDTO } from '../../dto/EventoDTOs/evento-dto';
 import Swal from 'sweetalert2';
+import { AdministradorService } from '../../servicios/administrador.service';
 
 @Component({
  selector: 'app-gestion-eventos',
@@ -17,9 +18,10 @@ export class GestionEventosComponent {
   seleccionados: EventoDTO[];
   eventos: EventoDTO[];
 
- constructor(public eventosService:EventosService) {
-  this.seleccionados = [];
-   this.eventos = eventosService.listar();
+ constructor(public eventosService : EventosService, public adminService : AdministradorService) {
+   this.seleccionados = []
+   this.eventos = []
+   this.adminService.listarEventosAdmin()
  }
 
  public seleccionar(evento: EventoDTO, estado: boolean) {
@@ -75,8 +77,21 @@ export class GestionEventosComponent {
   });
   this.seleccionados = [];
   this.actualizarMensaje();
- 
- 
  }
  
+ public listarEventos(){
+  this.adminService.listarEventosAdmin().subscribe({
+
+    next: (data) => {
+      this.eventos = data.respuesta
+      console.log(data);
+    },
+    error: (error) => {
+      console.error(error);
+      console.log(error);
+    },
+  });
+ }
+ 
+
 }

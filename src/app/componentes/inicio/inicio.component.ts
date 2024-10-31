@@ -15,22 +15,5 @@ import { PrincipalPageComponent } from "../../././componentes/principal-page/pri
   styleUrls: ['./inicio.component.scss'] // Cambié `styleUrl` a `styleUrls`
 })
 export class InicioComponent {
-  public eventos: any[]; // Declaración de la variable `eventos`
-
-  constructor(private publicoService: PublicoService) {
-    this.eventos = [];
-    this.obtenerEventos();
-  }
-
-  public obtenerEventos() {
-    this.publicoService.listarEventos(0).subscribe({
-      next: (data) => {
-        console.log(data.respuesta); // Verificar el contenido de los datos
-        this.eventos = data.respuesta;
-      },
-      error: (error) => {
-        console.error(error);
-      },
-    });
-  }
+  
 }

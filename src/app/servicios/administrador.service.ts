@@ -13,6 +13,7 @@ export class AdministradorService {
 
 
  private adminURL = "http://localhost:8080/api/admin";
+ private publicURL = "http://localhost:8080/api/publico"
 
 
  constructor(private http: HttpClient) { }
@@ -38,8 +39,8 @@ export class AdministradorService {
  }
 
 
- public listarEventosAdmin(pagina: number): Observable<MensajeDTO> {
-   return this.http.get<MensajeDTO>(`${this.adminURL}/evento/obtener-todos/${pagina}`);
+ public listarEventosAdmin(): Observable<MensajeDTO> {
+   return this.http.get<MensajeDTO>(`${this.publicURL}/evento/listar`);
  }
 
 
