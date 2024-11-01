@@ -7,6 +7,7 @@ import { CrearCuentaDTO } from '../dto/CuentaDTOs/CrearCuentaDTO';
 import { ActivarCuentaDTO } from '../dto/CuentaDTOs/ActivarCuentaDTO';
 import { CambiarPasswordDTO } from '../dto/CuentaDTOs/CambiarPasswordDTO';
 import { EnviarCodigoDTO } from '../dto/CuentaDTOs/EnviarCodigoDTO';
+import { TokenDTO } from '../dto/TokenDTOs/token-dto';
 
 
 @Injectable({
@@ -39,5 +40,9 @@ public cambiarPassword(CambiarPasswordDTO: CambiarPasswordDTO): Observable<Mensa
 public enviarCodigo(enviarCodigoDTO: EnviarCodigoDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.authURL}/enviar-codigo-recuperacion`, enviarCodigoDTO);
 }
+
+public refresh(tokenDTO: TokenDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/refresh`, tokenDTO);
+   }
 }
 
