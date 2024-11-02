@@ -79,18 +79,17 @@ export class VistaEventoComponentComponent implements OnInit { // Implementa OnI
     console.log("Datos a enviar en EventoCarritoDTO:", JSON.stringify(enviarEvento, null, 2));
   
     this.authService.agregarItemCarrito(enviarEvento).subscribe({
-      next: (data) => {
+      next: () => {
         Swal.fire({
-          title: 'Item Agregado',
-          text: 'El item fue agregado correctamente al carrito',
-          icon: 'success',
-          confirmButtonText: "Seguir Comprando",
-          customClass: {
-            title: 'swal-title-custom',
-            htmlContainer: 'swal-text-custom'
-          }
+            title: 'Entrada Añadida',
+            text: 'La entrada ha sido añadida al carrito correctamente.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        }).then(() => {
+            // Refresca la página después de cerrar la alerta
+            window.location.reload();
         });
-      },
+    },
       error: (error) => {
         Swal.fire({
           icon: 'error',
