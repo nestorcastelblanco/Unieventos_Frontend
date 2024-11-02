@@ -10,7 +10,8 @@ import { ActivarCuentaComponent } from './componentes/activar-cuenta/activar-cue
 import { EnviarCodigoComponent } from './componentes/enviar-codigo/enviar-codigo.component';
 import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
 import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
-
+import { LoginGuard } from './guards/permiso.service';
+import { RolesGuard } from './guards/roles.service';
 
 export const routes: Routes = [
    { path: '', component: LoginComponent },
@@ -23,5 +24,11 @@ export const routes: Routes = [
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
    { path: 'evento/:id', component : VistaEventoComponentComponent},
+   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
+   { path: 'registro', component: RegistroComponent, canActivate: [LoginGuard] },
+   { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   { path: "gestion-eventos", component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   //{ path: 'panel-admin', component: PanelAdminComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   //{ path: "historial-compras", component: HistorialComprasComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] } }
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];
