@@ -1,8 +1,8 @@
 export interface EventoCarritoDTO {
-    idEvento : string,
+    id : string,
     idUsuario: string,
     nombreEvento: string,
-    fechaEvento: Date,
+    fechaEvento: string ,
     numBoletas: number,
     nombreLocalidad: string
 }

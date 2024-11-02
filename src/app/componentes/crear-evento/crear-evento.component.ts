@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PublicoService } from '../../servicios/publico.service';
-
+import { AdministradorService } from '../../servicios/administrador.service';
+import Swal from 'sweetalert2';
+import { CrearEventoDTO } from '../../dto/EventoDTOs/CrearEventoDTO';
 @Component({
   selector: 'app-crear-evento',
   standalone: true,
@@ -14,8 +16,10 @@ export class CrearEventoComponent {
   crearEventoForm!: FormGroup;
   tiposDeEvento: string[];
   ciudades: string[];
+  imagenPortada?: File;
+  imagenLocalidades?: File;
 
-  constructor(private formBuilder: FormBuilder, private publicoService: PublicoService) {
+  constructor(private formBuilder: FormBuilder, private publicoService: PublicoService , private adminService : AdministradorService) {
     this.crearFormulario();
     this.tiposDeEvento = [];
     this.ciudades = [];
@@ -37,27 +41,32 @@ export class CrearEventoComponent {
     });
   }
 
-  public onFileChange(event:any, tipo:string){
+  public onFileChange(event: any, tipo: string) {
     if (event.target.files.length > 0) {
-      const files = event.target.files;     
-   
-   
-      switch(tipo){
-        case 'localidades':
-          this.crearEventoForm.get('imagenLocalidades')?.setValue(files[0]);
-          break;
-        case 'portada':
-          this.crearEventoForm.get('imagenPortada')?.setValue(files[0]);
-          break;
-      }
-   
-   
+      const file = event.target.files[0];
+      tipo == 'localidades' ? (this.imagenLocalidades = file) : (this.imagenPortada = file);
     }
    }
+   
 
    public crearEvento(){
-    console.log(this.crearEventoForm.value);
+
+
+    const crearEventoDTO = this.crearEventoForm.value as CrearEventoDTO;
+   
+   
+    this.adminService.crearEvento(crearEventoDTO).subscribe({
+      next: data => {
+        Swal.fire("Exito!", "Se ha creado un nuevo evento.", "success");
+      },
+      error: error => {
+        Swal.fire("Error!", error.error.respuesta, "error");
+      }
+    });
+   
+   
    }
+   
 
    public listarTipos(){
     this.publicoService.listarTipos().subscribe({
@@ -79,6 +88,28 @@ export class CrearEventoComponent {
         console.error(error);
       },
     });
+   }
+   
+   public subirImagen(tipo:string){
+    const formData = new FormData();
+    const imagen = tipo == 'portada' ? this.imagenPortada : this.imagenLocalidades;
+    const formControl = tipo == 'portada' ? 'imagenPortada' : 'imagenLocalidades';
+   
+   
+    formData.append('imagen', imagen!);
+   
+   
+    this.adminService.subirImagen(formData).subscribe({
+      next: (data) => {
+        this.crearEventoForm.get(formControl)?.setValue(data.respuesta);
+        Swal.fire("Exito!", "Se ha subido la imagen.", "success");
+      },
+      error: (error) => {
+        Swal.fire("Error!", error.error.respuesta, "error");
+      }
+    });
+   
+   
    }
    
 }

@@ -9,8 +9,7 @@ import { CambiarPasswordComponent } from './componentes/cambiar-password/cambiar
 import { ActivarCuentaComponent } from './componentes/activar-cuenta/activar-cuenta.component';
 import { EnviarCodigoComponent } from './componentes/enviar-codigo/enviar-codigo.component';
 import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
-
-
+import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
 
 
 export const routes: Routes = [
@@ -23,5 +22,6 @@ export const routes: Routes = [
    { path: 'activar-cuenta', component: ActivarCuentaComponent },
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
+   { path: 'evento/:id', component : VistaEventoComponentComponent},
    { path: "**", pathMatch: "full", redirectTo: "" }
 ];

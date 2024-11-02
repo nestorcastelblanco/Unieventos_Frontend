@@ -40,11 +40,14 @@
      </div>
      
      
-     <div>
-        <label>Imagen localidades: </label>
-        <input type="file" (change)="onFileChange($event, 'localidades')" />
+     <div class="col-6 d-inline-block">
+        <label class="form-label">Imagen portada: </label>
+        <div class="d-flex gap-2" >
+            <input type="file" (change)="onFileChange($event, 'portada')" class="form-control" />
+            <button type="submit" class="btn btn-primary" (click)="subirImagen('portada')" ><i class="fa-solid fa-cloud-arrow-up"></i></button>
+        </div>
      </div>
  
  
-    <button type="submit" >Crear evento</button>
+    <button  (click)="crearEvento()" type="submit" >Crear evento</button>
  </form>
