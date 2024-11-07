@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import { AuthService } from '../../servicios/auth.service';
+import { PublicoService } from '../../servicios/publico.service';
 import { ActivarCuentaDTO } from '../../dto/CuentaDTOs/ActivarCuentaDTO';
 
 @Component({
@@ -16,7 +16,7 @@ export class ActivarCuentaComponent {
   
   registroForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private publicoService: PublicoService) { 
     this.crearFormulario();
   }
 
@@ -30,7 +30,7 @@ export class ActivarCuentaComponent {
   public activarCuenta() {
     const activarCuentaDTO = this.registroForm.value as ActivarCuentaDTO; // Asegúrate de tener un DTO adecuado para esta operación
     
-    this.authService.activarCuenta(activarCuentaDTO).subscribe({
+    this.publicoService.activarCuenta(activarCuentaDTO).subscribe({
       next: (data) => {
         Swal.fire({
           title: 'Cuenta activada',

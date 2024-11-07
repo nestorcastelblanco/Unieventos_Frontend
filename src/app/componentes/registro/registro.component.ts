@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; // Importa AbstractControlOptions
 import { Router } from '@angular/router';
-import { AuthService } from '../../servicios/auth.service';
+import { PublicoService } from '../../servicios/publico.service';
 import { CrearCuentaDTO } from '../../dto/CuentaDTOs/CrearCuentaDTO';
 import Swal from 'sweetalert2';
 
@@ -17,7 +17,7 @@ export class RegistroComponent {
 
   registroForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private publicoService: PublicoService) { 
     this.crearFormulario();
   }
 
@@ -45,7 +45,7 @@ export class RegistroComponent {
     const crearCuenta = this.registroForm.value as CrearCuentaDTO;
    
    
-    this.authService.crearCuenta(crearCuenta).subscribe({
+    this.publicoService.crearCuenta(crearCuenta).subscribe({
       next: (data) => {
         Swal.fire({
           title: 'Cuenta creada',

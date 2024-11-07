@@ -84,5 +84,34 @@ public getIDCuenta(): string {
   }
   return "";
  }
+
+ public getNombre(): string {
+  const token = this.getToken();
+  if (token) {
+    const values = this.decodePayload(token);
+    return values.nombre;
+  }
+  return "";
+}
+
+public getTelefono(): string {
+  const token = this.getToken();
+  if (token) {
+    const values = this.decodePayload(token);
+    console.log(values.telefono);
+    return values.telefono;
+  }
+  return "";
+}
+
+public getDireccion(): string {
+  const token = this.getToken();
+  if (token) {
+    const values = this.decodePayload(token);
+    console.log(values.direccion);
+    return values.direccion; 
+  }
+  return "";
+}
  
 }

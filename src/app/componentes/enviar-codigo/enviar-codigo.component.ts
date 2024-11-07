@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../servicios/auth.service';
+import { PublicoService } from '../../servicios/publico.service';
 import Swal from 'sweetalert2';
 import { EnviarCodigoDTO } from '../../dto/CuentaDTOs/EnviarCodigoDTO';
 
@@ -16,7 +16,7 @@ export class EnviarCodigoComponent {
 
   enviarForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,  private authService: AuthService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router,  private publicoService: PublicoService) { 
     this.crearFormulario();
   }
 
@@ -30,7 +30,7 @@ export class EnviarCodigoComponent {
     
     const enviarCodigoDTO = this.enviarForm.value as EnviarCodigoDTO ;
 
-    this.authService.enviarCodigo(enviarCodigoDTO).subscribe({
+    this.publicoService.enviarCodigo(enviarCodigoDTO).subscribe({
       next: (data) => {
           // Verifica si el mensaje es accesible en `data.mensaje`
           console.log("Respuesta exitosa:", data);

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../servicios/auth.service';
+import { PublicoService } from '../../servicios/publico.service';
 import Swal from 'sweetalert2';
 import { LoginDTO } from '../../dto/CuentaDTOs/LoginDTO';
 import { TokenService } from '../../servicios/token.service';
@@ -19,7 +19,7 @@ export class LoginComponent {
 
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private tokenService: TokenService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private publicoService: PublicoService, private tokenService: TokenService) { 
     this.crearFormulario();
   }
 
@@ -33,7 +33,7 @@ export class LoginComponent {
   public login() {
     const loginDTO = this.loginForm.value as LoginDTO;
     console.log(loginDTO);
-    this.authService.iniciarSesion(loginDTO).subscribe({
+    this.publicoService.iniciarSesion(loginDTO).subscribe({
       next: (data) => {
         Swal.fire({
           title: 'Inicio de Sesion Correcto',

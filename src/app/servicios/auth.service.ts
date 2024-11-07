@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginDTO } from '../dto/CuentaDTOs/LoginDTO';
 import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/TokenDTOs/MensajeDTO';
-import { CrearCuentaDTO } from '../dto/CuentaDTOs/CrearCuentaDTO';
-import { ActivarCuentaDTO } from '../dto/CuentaDTOs/ActivarCuentaDTO';
-import { CambiarPasswordDTO } from '../dto/CuentaDTOs/CambiarPasswordDTO';
-import { EnviarCodigoDTO } from '../dto/CuentaDTOs/EnviarCodigoDTO';
-import { TokenDTO } from '../dto/TokenDTOs/token-dto';
+import { CrearCuponDTO } from '../dto/CuponDTOs/crear-cupon-dto';
+import { EditarCuponDTO } from '../dto/CuponDTOs/editar-cupon-dto';
+import { InformacionCuponDTO } from '../dto/CuponDTOs/informacion-cupon-dto';
 
 
 @Injectable({
@@ -16,33 +13,44 @@ import { TokenDTO } from '../dto/TokenDTOs/token-dto';
 export class AuthService {
 
 
- private authURL = "http://localhost:8080/api/publico";
+ private authURL = "http://localhost:8080/api/admin";
 
 
  constructor(private http: HttpClient) { }
 
- public crearCuenta(cuentaDTO: CrearCuentaDTO): Observable<MensajeDTO> {
-  return this.http.post<MensajeDTO>(`${this.authURL}/crear-cuenta`, cuentaDTO);
- }
- 
- public iniciarSesion(loginDTO: LoginDTO): Observable<MensajeDTO> {
-  return this.http.post<MensajeDTO>(`${this.authURL}/iniciar-sesion`, loginDTO);
- }
+ // Método para crear un cupón
+ public crearCupon(cuponDTO: CrearCuponDTO): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.authURL}/cupon/crear`, cuponDTO);
+  }
 
- public activarCuenta(activarCuentaDTO: ActivarCuentaDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/activar-cuenta`, activarCuentaDTO);
-}
+  // Método para editar un cupón
+  public editarCupon(cuponDTO: EditarCuponDTO): Observable<MensajeDTO> {
+    return this.http.put<MensajeDTO>(`${this.authURL}/cupon/editar`, cuponDTO);
+  }
 
-public cambiarPassword(CambiarPasswordDTO: CambiarPasswordDTO): Observable<MensajeDTO> {
-   return this.http.post<MensajeDTO>(`${this.authURL}/cambiar-password`, CambiarPasswordDTO);
-}
+  // Método para eliminar un cupón
+  public eliminarCupon(id: string): Observable<MensajeDTO> {
+    return this.http.delete<MensajeDTO>(`${this.authURL}/cupon/eliminar/${id}`);
+  }
 
-public enviarCodigo(enviarCodigoDTO: EnviarCodigoDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/enviar-codigo-recuperacion`, enviarCodigoDTO);
-}
+  // Método para listar los tipos de cupon
+  public listarTiposCupon(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.authURL}/cupon/tipos`);
+  }
+  // Método para listar los estados de cupon
+  public listarEstadosCupon(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.authURL}/cupon/estados`);
+  }
 
-public refresh(tokenDTO: TokenDTO): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.authURL}/refresh`, tokenDTO);
-   }
+  // Método para editar un cupón
+  public listarCupones(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.authURL}/cupon/listar`);
+  }
+
+  // Método para obtener la información del cupón por ID
+  public obtenerInformacionCupon(id: string): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.authURL}/cupon/obtener-informacion/${id}`);
+  }
+  
 }
 

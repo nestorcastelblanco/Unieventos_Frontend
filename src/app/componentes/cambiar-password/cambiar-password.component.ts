@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../servicios/auth.service';
+import { PublicoService } from '../../servicios/publico.service';
 import { CambiarPasswordDTO } from '../../dto/CuentaDTOs/CambiarPasswordDTO';
 import Swal from 'sweetalert2';
 
@@ -16,7 +16,7 @@ export class CambiarPasswordComponent {
 
   registroForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
+  constructor(private formBuilder: FormBuilder, private router: Router, private publicoService: PublicoService) { 
     this.crearFormulario();
   }
 
@@ -32,7 +32,7 @@ export class CambiarPasswordComponent {
     // Suponemos que el formulario contiene un campo para la nueva contraseña
     const cambioPasswordDTO = this.registroForm.value as CambiarPasswordDTO;
   
-    this.authService.cambiarPassword(cambioPasswordDTO).subscribe({
+    this.publicoService.cambiarPassword(cambioPasswordDTO).subscribe({
       next: (data) => {
         Swal.fire({
           title: 'Contraseña cambiada',

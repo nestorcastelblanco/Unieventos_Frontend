@@ -8,6 +8,10 @@ import { HistorialEventosComponent } from './componentes/historial-eventos/histo
 import { CambiarPasswordComponent } from './componentes/cambiar-password/cambiar-password.component';
 import { ActivarCuentaComponent } from './componentes/activar-cuenta/activar-cuenta.component';
 import { EnviarCodigoComponent } from './componentes/enviar-codigo/enviar-codigo.component';
+import { CrearCuponComponent } from './componentes/crear-cupon/crear-cupon.component';
+import { EditarCuponComponent } from './componentes/editar-cupon/editar-cupon.component';
+import { VistaCuponComponent } from './componentes/vista-cupon/vista-cupon.component';
+import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
 import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
 import { LoginGuard } from './guards/permiso.service';
@@ -24,6 +28,10 @@ export const routes: Routes = [
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
    { path: 'evento/:id', component : VistaEventoComponentComponent},
+   { path: 'crear-cupon', component : CrearCuponComponent},
+   { path: 'editar-cupon', component : EditarCuponComponent},
+   { path: 'vista-cupon', component : VistaCuponComponent},
+   { path: 'editar-perfil', component : EditarPerfilComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] }},
    { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
    { path: 'registro', component: RegistroComponent, canActivate: [LoginGuard] },
    { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
