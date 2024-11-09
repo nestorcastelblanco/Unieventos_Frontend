@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Buffer } from "buffer";
 import { HttpClient } from '@angular/common/http'
+import { ClienteService } from './cliente.service';
 
 
 const TOKEN_KEY = "AuthToken";
@@ -12,7 +13,7 @@ const TOKEN_KEY = "AuthToken";
 })
 export class TokenService {
 
- constructor(private router: Router) { }
+ constructor(private router: Router, private clienteService : ClienteService) { }
 
  public setToken(token: string) {
   window.sessionStorage.removeItem(TOKEN_KEY);
@@ -84,6 +85,7 @@ public getIDCuenta(): string {
   }
   return "";
  }
+<<<<<<< Updated upstream
 
  public getNombre(): string {
   const token = this.getToken();
@@ -114,4 +116,6 @@ public getDireccion(): string {
   return "";
 }
  
+=======
+>>>>>>> Stashed changes
 }
