@@ -85,7 +85,6 @@ public getIDCuenta(): string {
   }
   return "";
  }
-<<<<<<< Updated upstream
 
  public getNombre(): string {
   const token = this.getToken();
@@ -96,26 +95,23 @@ public getIDCuenta(): string {
   return "";
 }
 
-public getTelefono(): string {
-  const token = this.getToken();
-  if (token) {
-    const values = this.decodePayload(token);
-    console.log(values.telefono);
-    return values.telefono;
+  public getTelefono(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      console.log(values.telefono);
+      return values.telefono;
+    }
+    return "";
   }
-  return "";
-}
-
-public getDireccion(): string {
-  const token = this.getToken();
-  if (token) {
-    const values = this.decodePayload(token);
-    console.log(values.direccion);
-    return values.direccion; 
+  
+  public getDireccion(): string {
+    const token = this.getToken();
+    if (token) {
+      const values = this.decodePayload(token);
+      console.log(values.direccion);
+      return values.direccion; 
+    }
+    return "";
   }
-  return "";
-}
- 
-=======
->>>>>>> Stashed changes
 }
