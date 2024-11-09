@@ -13,7 +13,8 @@ import { EditarCuponComponent } from './componentes/editar-cupon/editar-cupon.co
 import { VistaCuponComponent } from './componentes/vista-cupon/vista-cupon.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
-import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
+import { VistaEventoComponent } from './componentes/vista-evento/vista-evento.component';
+import { VistaEventoAdministradorComponent } from './componentes/vista-evento-administrador/vista-evento-administrador.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
@@ -27,14 +28,16 @@ export const routes: Routes = [
    { path: 'activar-cuenta', component: ActivarCuentaComponent },
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
-   { path: 'evento/:id', component : VistaEventoComponentComponent},
+   { path: 'vista-evento', component : VistaEventoComponent},
+   { path: 'vista-evento-administrador', component : VistaEventoAdministradorComponent},
+   { path: 'crear-evento', component : CrearEventoComponent},
    { path: 'crear-cupon', component : CrearCuponComponent},
    { path: 'editar-cupon', component : EditarCuponComponent},
    { path: 'vista-cupon', component : VistaCuponComponent},
    { path: 'editar-perfil', component : EditarPerfilComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] }},
    { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
    { path: 'registro', component: RegistroComponent, canActivate: [LoginGuard] },
-   { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   //{ path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: "gestion-eventos", component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    //{ path: 'panel-admin', component: PanelAdminComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    //{ path: "historial-compras", component: HistorialComprasComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] } }

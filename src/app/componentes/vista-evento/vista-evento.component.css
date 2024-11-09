@@ -1,0 +1,160 @@
+/* Estilo general */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Estilo del contenedor principal */
+  .container {
+    width: 100%;
+    max-width: 1000px;
+    padding: 20px;
+    margin: 0 auto; /* Asegura que el contenedor esté centrado */
+    text-align: center; /* Centra el texto del título */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilo de la tarjeta */
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilo del encabezado */
+  h5 {
+    font-size: 1.75em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #007BFF;
+  }
+  
+  /* Contenedor de la tabla */
+  .table-container {
+    width: 100%;
+    overflow-x: auto; /* Permite desplazamiento horizontal si la tabla es muy ancha */
+    padding: 10px;
+    margin: 0 auto; /* Asegura que el contenedor esté centrado */
+  }
+  
+  /* Estilo de la tabla */
+  .table {
+    width: 100%; /* Hace que la tabla ocupe todo el ancho disponible */
+    max-width: 1000px; /* Limita el ancho máximo */
+    border-collapse: collapse;
+    font-size: 1.1em;
+    margin: 0 auto; /* Centra la tabla dentro del contenedor */
+  }
+  
+  .table th, .table td {
+    padding: 16px;
+    border: 1px solid #ddd;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+  
+  .table th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .table td {
+    background-color: #fff;
+  }
+  
+  .table tbody tr:nth-child(even) td {
+    background-color: #f4f4f9;
+  }
+  
+  .table tbody tr:hover td {
+    background-color: #e0f7fa;
+  }
+  
+  /* Ajuste de ancho de columnas */
+  .table .id-column {
+    width: 5%;
+  }
+  
+  .table .codigo-column,
+  .table .descuento-column,
+  .table .tipo-column {
+    width: 10%;
+  }
+  
+  .table .nombre-column {
+    width: 25%;
+  }
+  
+  .table .estado-column {
+    width: 15%;
+  }
+  
+  .table .fecha-column {
+    width: 20%;
+  }
+  
+  /* Estilo para botones de acciones */
+  .table button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .table .edit-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .table .edit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .table .delete-button {
+    background-color: #FF4C4C;
+    color: white;
+  }
+  
+  .table .delete-button:hover {
+    background-color: #FF3333;
+  }
+  
+  /* Centrar los botones */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Estilo personalizado para mayor separación y tamaño de la fuente */
+  .titulo-principal {
+    font-size: 3rem;  /* Tamaño más grande para el título */
+    margin-bottom: 20px;  /* Espacio debajo del título */
+  }
+  .subtitulo {
+    font-size: 1.5rem;  /* Tamaño para el subtítulo */
+    margin-top: 10px;  /* Separación adicional si es necesario */
+    white-space: nowrap;
+  }

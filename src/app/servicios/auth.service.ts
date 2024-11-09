@@ -5,6 +5,7 @@ import { MensajeDTO } from '../dto/TokenDTOs/MensajeDTO';
 import { CrearCuponDTO } from '../dto/CuponDTOs/crear-cupon-dto';
 import { EditarCuponDTO } from '../dto/CuponDTOs/editar-cupon-dto';
 import { InformacionCuponDTO } from '../dto/CuponDTOs/informacion-cupon-dto';
+import { CrearEventoDTO } from '../dto/EventoDTOs/CrearEventoDTO';
 
 
 @Injectable({
@@ -51,6 +52,37 @@ export class AuthService {
   public obtenerInformacionCupon(id: string): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.authURL}/cupon/obtener-informacion/${id}`);
   }
+
+  // Método para crear un evento
+public crearEvento(eventoDTO: CrearEventoDTO): Observable<MensajeDTO> {
+  return this.http.post<MensajeDTO>(`${this.authURL}/evento/crear`, eventoDTO);
+}
+
+// Método para editar un evento
+public editarEvento(eventoDTO: EditarCuponDTO): Observable<MensajeDTO> {
+  return this.http.put<MensajeDTO>(`${this.authURL}/evento/editar`, eventoDTO);
+}
+
+// Método para eliminar un evento
+public eliminarEvento(id: string): Observable<MensajeDTO> {
+  return this.http.delete<MensajeDTO>(`${this.authURL}/evento/eliminar/${id}`);
+}
+
+// Método para listar los tipos de evento
+public listarTiposEvento(): Observable<MensajeDTO> {
+  return this.http.get<MensajeDTO>(`${this.authURL}/evento/tipos`);
+}
+
+// Método para listar eventos
+public listarEventos(): Observable<MensajeDTO> {
+  return this.http.get<MensajeDTO>(`${this.authURL}/evento/listar`);
+}
+
+// Método para obtener la información del evento por ID
+public obtenerInformacionEvento(id: string): Observable<MensajeDTO> {
+  return this.http.get<MensajeDTO>(`${this.authURL}/evento/obtener-informacion/${id}`);
+}
+
   
 }
 
