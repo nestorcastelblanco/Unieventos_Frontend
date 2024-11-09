@@ -8,54 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body class="p-3 m-0 border-1 bd-example m-0 border-0">
-
-<<<<<<< Updated upstream
-<!-- Example Code -->        
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/logoUnieventos.png?alt=media&token=2f08a9d2-d0e5-4a8f-93ec-5524216aa0c9" 
-         class="rounded-circle me-3" 
-         alt="Logo Unieventos" 
-         height="40" 
-         width="40">
-    <a class="navbar-brand" href="/inicio">Unieventos</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/historial-eventos">Eventos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/pagar-evento">Pagar Evento</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/crear-cupon">Crear Cupon</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/editar-perfil">Editar Perfil</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/vista-cupon">Cupones</a>
-        </li>
-      </ul>
-      <div class="d-flex align-items-center">
-        <div class="text-center me-3">
-          @if (!isLogged) {
-            <button type="button" routerLink="/login" class="btn btn-outline-primary me-2">Login</button>
-            <button type="button" routerLink="/registro" class="btn btn-primary">Registro</button>
-          } @else {
-            <span class="me-3">Hola {{email}}</span>
-            <button type="button" (click)="logout()" class="btn btn-primary">Logout</button>
-          }
-        </div>
-      </div>
-    </div>
-  </div>
-</nav>
-<!-- End Example Code -->
-=======
     <!-- Example Code -->        
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
@@ -71,10 +23,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link text-dark active" aria-current="page" routerLink="/historial-eventos">Eventos</a>
+              <a class="nav-link active" aria-current="page" routerLink="/historial-eventos">Eventos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-dark active" href="/pagar-evento">Pagar Evento</a>
+              <a class="nav-link active" href="/pagar-evento">Pagar Evento</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/crear-cupon">Crear Cupon</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/editar-perfil">Editar Perfil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/vista-cupon">Cupones</a>
             </li>
           </ul>
           <div class="d-flex align-items-center ms-auto">
@@ -90,7 +51,5 @@
         </div>
       </div>
     </nav>
-    <!-- End Example Code -->
   </body>
 </html>
->>>>>>> Stashed changes

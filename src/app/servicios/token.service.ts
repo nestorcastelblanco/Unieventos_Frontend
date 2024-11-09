@@ -85,7 +85,6 @@ public getIDCuenta(): string {
   }
   return "";
  }
-<<<<<<< Updated upstream
 
  public getNombre(): string {
   const token = this.getToken();
@@ -115,7 +114,5 @@ public getDireccion(): string {
   }
   return "";
 }
- 
-=======
->>>>>>> Stashed changes
+
 }
