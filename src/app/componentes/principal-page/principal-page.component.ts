@@ -10,7 +10,7 @@ import { EventoDTO } from '../../dto/EventoDTOs/evento-dto';
 @Component({
   selector: 'app-principal-page',
   standalone: true,
-  imports: [RouterOutlet, RouterModule,HeaderComponent, FooterComponent, CarruselImagenesComponent],
+  imports: [RouterModule],
   templateUrl: './principal-page.component.html',
   styleUrl: './principal-page.component.css'
 })

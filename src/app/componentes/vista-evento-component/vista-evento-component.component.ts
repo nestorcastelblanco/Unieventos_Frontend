@@ -14,7 +14,7 @@ import { ClienteService } from '../../servicios/cliente.service';
 @Component({
   selector: 'app-vista-evento-component',
   standalone: true,
-  imports: [RouterModule,  FontAwesomeModule,ReactiveFormsModule, HeaderComponent],
+  imports: [RouterModule, ReactiveFormsModule],
   templateUrl: './vista-evento-component.component.html',
   styleUrls: ['./vista-evento-component.component.css'] // Cambia 'styleUrl' a 'styleUrls'
 })

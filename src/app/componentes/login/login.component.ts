@@ -11,7 +11,7 @@ import { HeaderComponent } from "../header/header.component";
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -45,6 +45,7 @@ export class LoginComponent {
             htmlContainer: 'swal-text-custom'
           }
         });
+        console.log(data.respuesta.token)
         this.tokenService.login(data.respuesta.token);
         this.router.navigate(['/inicio']);
       },

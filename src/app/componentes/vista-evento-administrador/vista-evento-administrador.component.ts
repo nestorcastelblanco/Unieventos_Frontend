@@ -12,11 +12,12 @@ import { EventoService } from '../../servicios/evento.service'; // Importa el se
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../servicios/auth.service';
 import Swal from 'sweetalert2';
+import { AdministradorService } from '../../servicios/administrador.service';
 
 @Component({
   selector: 'app-vista-evento-administrador',
   standalone: true,
-  imports: [RouterOutlet, RouterModule,HeaderComponent, FooterComponent, CarruselImagenesComponent],
+  imports: [RouterModule],
   templateUrl: './vista-evento-administrador.component.html',
   styleUrl: './vista-evento-administrador.component.css'
 })
@@ -27,13 +28,18 @@ export class VistaEventoAdministradorComponent {
 
   cuponForm!: FormGroup;
 
-  constructor(private eventoService: EventoService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
+  constructor(private eventoService: EventoService, 
+    private adminService: AdministradorService, 
+    private publicoService: PublicoService, 
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private authService: AuthService) { 
     this.eventos = [];
     this.obtenerEventos();
   }
 
   public obtenerEventos() {
-    this.authService.listarEventos().subscribe({
+    this.publicoService.listarEventos().subscribe({
       next: (data) => {
           this.eventos = data.respuesta; // Asigna la lista de tipos al array en el componente
       },
@@ -58,7 +64,7 @@ export class VistaEventoAdministradorComponent {
       confirmButtonText: 'Sí, eliminarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.authService.eliminarEvento(eventoId).subscribe({
+        this.adminService.eliminarEvento(eventoId).subscribe({
           next: (response) => {
             Swal.fire(
               'Eliminado!',

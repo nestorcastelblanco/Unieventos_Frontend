@@ -10,9 +10,9 @@ import { PrincipalPageComponent } from "../../././componentes/principal-page/pri
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [RouterOutlet, RouterModule,HeaderComponent, FooterComponent, CarruselImagenesComponent,PrincipalPageComponent],
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.scss'] // Cambié `styleUrl` a `styleUrls`
+  styleUrls: ['./inicio.component.scss'],
+  imports: [PrincipalPageComponent, HeaderComponent, CarruselImagenesComponent]
 })
 export class InicioComponent {
   

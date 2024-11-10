@@ -22,7 +22,7 @@ import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
 export const routes: Routes = [
-   { path: '', component: LoginComponent },
+   { path: '', component: PrincipalComponent },
    { path: 'inicio', component: InicioComponent },
    { path: 'registro', component: RegistroComponent },
    { path: "historial-eventos", component: HistorialEventosComponent },
