@@ -1,4 +1,4 @@
-import { Localidades } from "./localidades"
+import { LocalidadDTO } from "./LocalidadDTO"
 
 export interface EditarEventoDTO {
     id:string,
@@ -11,5 +11,5 @@ export interface EditarEventoDTO {
     imagenPortada:string,
     imagenLocalidades:string,
     estado:string,
-    loclidades: Localidades[]
+    loclidades: LocalidadDTO[]
  }

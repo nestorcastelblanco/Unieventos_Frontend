@@ -1,146 +1,53 @@
-<p>crear-evento works!</p>
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-    <link rel="logoUnieventos" href="/public/logoUnieventos.ico" sizes="32x32" type="image/png">
-    <title>Bootstrap Example</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-      .dropdown-menu {
-          width: 350px; /* Cambia el ancho como desees */
-          height: auto; /* Ajusta el alto, auto se ajusta al contenido */
-          max-height: 800px; /* Puedes establecer un alto máximo si lo deseas */
-          overflow-y: auto; /* Esto agrega un desplazamiento si el contenido excede el alto máximo */
-          align-items: center;
-          border-radius: 4;
-      }
-      .form-control {
-          width: 100%; /* Asegúrate de que los inputs llenen el ancho del contenedor */
-      }
-  </style>
-
-  </head>
-    <section class="py-0 text-center container">
-      <div class="row py-0">
-        <div class="column-gap-lg-2 mx-auto">
-          <h1 class="fw-light display-3 col-0">Unieventos </h1>
-        </div>
-        <div>
-          <figure class="figure">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/logoUnieventos.png?alt=media&token=2f08a9d2-d0e5-4a8f-93ec-5524216aa0c9" 
-                 class="rounded-circle float-start" 
-                 class = "rounded-circle mt-3"
-                 alt="" 
-                 height="150px" 
-                 width="150px">
-          </figure>
-        </div>
-      </div>
-
-      <h1>
-        <div>
-          <label class="fw-light display-3 col-0" class = "mb-5" class = "mt-3" font>Crear Evento</label>
-        </div>
-      </h1>
-.
-<body class="p-0 m-0 bd-example m-1 bg-white h-50 w-auto border-0 col-5">
-  <div class="col-md-12 mt-3">
-    <!-- Formulario de cupón -->
-    <form class="row g-4 needs-validation" [formGroup]="eventoForm" (ngSubmit)="crearEvento()" novalidate>
-      <div class="row">
-        <div class="col-md-6 text-start">
-          <label class="form-label">Nombre</label>
-          <input type="text" class="form-control" formControlName="nombre" placeholder="Nombre" />
-        </div>
-        <div class="col-md-6 text-start">
-          <label class="form-label">Descripcion</label>
-          <input type="text" class="form-control" formControlName="descripcion" placeholder="Descripcion" />
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-md-6 text-start">
-          <label class="form-label">Direccion</label>
-          <input type="text" class="form-control" formControlName="direccion" placeholder="Direccion" />
-        </div>
-        <div class="col-md-6 text-start">
-            <label class="form-label">Ciudad</label>
-            <input type="text" class="form-control" formControlName="ciudad" placeholder="Ciudad" />
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6 text-start">
-            <label class="form-label">Fecha</label>
-            <input type="datetime-local" class="form-control" formControlName="fecha" placeholder="Fecha" />
-        </div>
-        <div class="col-md-6 text-start">
-          <label class="form-label">Tipo de Evento</label>
-          <select class="form-control" formControlName="tipo">
-            <option value="" disabled selected>Selecciona un tipo</option> <!-- Opción por defecto -->
-            <!-- Ciclo para mostrar cada opción en el select -->
-            @for (evento of tiposEvento; track $index) {
-              <option [value]="evento">{{ evento }}</option>
+<form >
+    <div>
+        <label>Nombre: </label>
+        <input type="text" />
+    </div>
+ 
+ 
+    <div>
+        <label>Descripción: </label>
+        <textarea ></textarea>   
+    </div>
+ 
+ 
+    <div class="col-6">
+        <label class="form-label">Tipo: </label>
+        <select formControlName="tipo" class="form-select" >
+            <option value="">Seleccione un tipo</option>
+            @for (item of tiposDeEvento; track $index) {
+                <option value="{{item}}">{{item}}</option>
             }
-          </select>
-        </div>
+        </select>
+     </div>
+ 
+ 
+    <div>
+        <label>Dirección: </label>
+        <input type="text" />
     </div>
-    <div class="row">
-        <div class="col-md-6 text-start">
-            <label class="form-label">Imagen Poster</label>
-            <input type="text" class="form-control" formControlName="imagenPoster" placeholder="Imagen Poster" />
-        </div>
-            <div class="col-md-6 text-start">
-              <label class="form-label">Imagen Localidades</label>
-              <input type="text" class="form-control" formControlName="imagenLocalidades" placeholder="Imagen Localidades" />
-            </div>
+ 
+ 
+    <div>
+        <label>Ciudad: </label>
+        <input type="text" />
     </div>
-    <div class="row">
-        <!-- Texto "Localidades" con el botón "+" para abrir el modal -->
-        <div class="col-md-12 text-start mt-3">
-          <label class="form-label">Localidades</label>
-          <button type="button" class="btn btn-azul btn-sm ms-2" data-bs-toggle="modal" data-bs-target="#agregarLocalidadModal">AÑADIR LOCALIDAD +</button>
+ 
+ 
+    <div>
+        <label>Imagen evento: </label>
+        <input type="file" (change)="onFileChange($event, 'portada')" />
+     </div>
+     
+     
+     <div class="col-6 d-inline-block">
+        <label class="form-label">Imagen portada: </label>
+        <div class="d-flex gap-2" >
+            <input type="file" (change)="onFileChange($event, 'portada')" class="form-control" />
+            <button type="submit" class="btn btn-primary" (click)="subirImagen('portada')" ><i class="fa-solid fa-cloud-arrow-up"></i></button>
         </div>
-      </div>
-      
-      <!-- Modal para agregar localidad -->
-      <div class="modal fade" id="agregarLocalidadModal" tabindex="-1" aria-labelledby="agregarLocalidadModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header justify-content-center">
-              <h5 class="modal-title fs-1" id="agregarLocalidadModalLabel">AGREGAR LOCALIDAD</h5>
-            </div>
-            <div class="modal-body">
-              <form [formGroup]="localidadForm" (ngSubmit)="agregarLocalidad()">
-                <div class="mb-3">
-                  <label class="form-label">Nombre de Localidad</label>
-                  <input type="text" class="form-control" formControlName="nombreLocalidad" placeholder="Nombre de la localidad" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Precio</label>
-                  <input type="text" class="form-control" formControlName="precio" placeholder="Precio" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Capacidad Máxima</label>
-                  <input type="text" class="form-control" formControlName="capacidadMaxima" placeholder="Capacidad máxima" required>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-rojo" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="submit" class="btn btn-primary">Agregar Localidad</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>      
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">Crear Evento</button>
-      </div>
-    </form>
-    <div class="dropdown-divider"></div>
-  </div>
-</body>
+     </div>
+ 
+ 
+    <button  (click)="crearEvento()" type="submit" >Crear evento</button>
+ </form>

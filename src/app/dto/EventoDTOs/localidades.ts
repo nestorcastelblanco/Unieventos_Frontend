@@ -1,6 +1,6 @@
 export interface Localidades {
     nombreLocalidad : string,
-    precio : number,
+    precio : string,
     capacidadMaxima : string,
     entradasVendidas : string
 }

@@ -27,16 +27,14 @@ export class EventosService {
     ciudad:'Bogota',
     localidades:[
       {
-        nombreLocalidad:'Localidad 1',
+        nombre:'Localidad 1',
         precio:10000,
-        capacidadMaxima:"100",
-        entradasVendidas: "30"
+        capacidad:100
       },
       {
-        nombreLocalidad:'Localidad 2',
+        nombre:'Localidad 2',
         precio:20000,
-        capacidadMaxima: "100",
-        entradasVendidas: "40"
+        capacidad:100
       }
     ],
     imagenPortada:'https://picsum.photos/100?random=1',
