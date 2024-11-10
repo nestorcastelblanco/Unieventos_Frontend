@@ -1,43 +1,49 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; // Importa AbstractControlOptions
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { AuthService } from '../../servicios/auth.service';
-import { CuponService } from '../../servicios/cupon.service'; // Importa el servicio
+import { CuponService } from '../../servicios/cupon.service'; 
 import Swal from 'sweetalert2';
 import { InformacionCuponDTO } from '../../dto/CuponDTOs/informacion-cupon-dto';
-import { CommonModule } from '@angular/common'; // Importa CommonModule
+import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-vista-cupon',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './vista-cupon.component.html',
-  styleUrl: './vista-cupon.component.css'
+  styleUrls: ['./vista-cupon.component.css']
 })
-export class VistaCuponComponent {
-  cupones: InformacionCuponDTO[];
-  selectedCuponId: string = "";
+export class VistaCuponComponent implements OnInit {
+  cupones: InformacionCuponDTO[] = []; 
+  selectedCuponId: string = ""; 
 
-  cuponForm!: FormGroup;
+  cuponForm!: FormGroup; 
 
-  constructor(private cuponService: CuponService, private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
-    this.cupones = [];
-    this.obtenerCupones();
+  constructor(
+    private cuponService: CuponService, 
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private authService: AuthService
+  ) { }
+
+  ngOnInit(): void { 
+    this.obtenerCupones(); 
   }
 
   public obtenerCupones() {
     this.authService.listarCupones().subscribe({
       next: (data) => {
-          this.cupones = data.respuesta; // Asigna la lista de tipos al array en el componente
+        this.cupones = data.respuesta; 
       },
       error: (err) => {
-          console.error('Error al cargar los cupones:', err);
+        console.error('Error al cargar los cupones:', err);
       }
-  });
+    });
   }
 
   public selectRow(cuponId: string) {
-    this.selectedCuponId = cuponId; // Guarda el ID del cupón seleccionado
+    this.selectedCuponId = cuponId;
   }
 
   public eliminarCupon(cuponId: string) {
@@ -58,7 +64,6 @@ export class VistaCuponComponent {
               'El cupón ha sido eliminado.',
               'success'
             );
-            // Actualiza la lista de cupones
             this.obtenerCupones();
           },
           error: (err) => {
@@ -74,22 +79,22 @@ export class VistaCuponComponent {
     });
   }
 
-  public abrirVentanaCrear(){
+  public abrirVentanaCrear() {
     this.router.navigate(['/crear-cupon']);
-   }
+  }
 
-   public abrirVentanaEditar(){
+  public abrirVentanaEditar() {
     if (this.selectedCuponId) {
-      // Encuentra el cupón basado en el ID seleccionado
       const cupon = this.cupones.find(c => c.id === this.selectedCuponId);
-      
       if (cupon) {
-        // Establece el cupon seleccionado en el servicio
         this.cuponService.setCuponSeleccionado(cupon);
-
-        // Redirige al componente de edición
         this.router.navigate(['/editar-cupon']);
       }
-   }
+    }
+  }
+
+  // trackBy function para optimizar el rendimiento de *ngFor
+  trackById(index: number, cupon: InformacionCuponDTO): string {
+    return cupon.id; // Devuelve el ID del cupón para hacer el seguimiento por ID
   }
 }

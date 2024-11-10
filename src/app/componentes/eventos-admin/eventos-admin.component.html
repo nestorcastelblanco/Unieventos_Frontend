@@ -163,42 +163,32 @@
 
 <main>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">¡Busca un evento!</h1>
-        <p class="lead text-body-secondary">Explora la plataforma donde podrás encontrar y adquirir entradas para una amplia gama de eventos. Ya sea que busques disfrutar de conciertos, festivales, obras de teatro, deportes o eventos especiales, Unieventos ofrece una experiencia de compra rápida y segura.
-        </p>
-      </div>
-    </div>
-  </section>
-
   <div class="album py-0 bg-body-tertiary">
     <div class="container">
-
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          @for (item of eventos; track $index) {
-            <div class="col">
-              <div class="card shadow h-100">
-                <img src={{item.imagenPortada}} alt="Descripción de la imagen" width=auto height="300px">
-                <div class="card-body">
-                  <h3>
-                    <p class="card-text">{{item.nombre}}</p>
-                  </h3>
-                  <p class="card-text"></p>{{item.descripcion}}
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group mt-2">
-                      <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/evento', item.id]">View</button>
-                    </div>
-                    <small class="text-body-secondary">{{item.direccion}}</small>
+        @for (item of eventos; track $index) {
+          <div class="col">
+            <div class="card shadow h-100">
+              <img src={{item.imagenPortada}} alt="Descripción de la imagen" width="auto" height="300px">
+              <div class="card-body">
+                <h3>
+                  <p class="card-text">{{item.nombre}}</p>
+                </h3>
+                <p class="card-text">{{item.descripcion}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group mt-2">
+                    <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/editar-evento', item.id]" >Editar</button>
                   </div>
+                  <small class="text-body-secondary">{{item.direccion}}</small>
                 </div>
               </div>
             </div>
-          }         
-        </div>
+          </div>
+        }         
       </div>
     </div>
+  </div>
+  
 
 
 </main>

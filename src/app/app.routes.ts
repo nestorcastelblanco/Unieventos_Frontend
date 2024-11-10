@@ -11,9 +11,13 @@ import { EnviarCodigoComponent } from './componentes/enviar-codigo/enviar-codigo
 import { CrearCuponComponent } from './componentes/crear-cupon/crear-cupon.component';
 import { EditarCuponComponent } from './componentes/editar-cupon/editar-cupon.component';
 import { VistaCuponComponent } from './componentes/vista-cupon/vista-cupon.component';
+import { EventosAdminComponent } from './componentes/eventos-admin/eventos-admin.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
 import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
+import { EditarEventoComponent } from './componentes/editar-evento/editar-evento.component';
+import { CrearLocalidadComponent } from './componentes/crear-localidad/crear-localidad.component';
+import { PrincipalComponent } from './componentes/principal/principal.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
@@ -27,7 +31,11 @@ export const routes: Routes = [
    { path: 'activar-cuenta', component: ActivarCuentaComponent },
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
+   { path: 'eventos-admin', component: EventosAdminComponent },
    { path: 'evento/:id', component : VistaEventoComponentComponent},
+   { path: 'editar-evento/:id', component : EditarEventoComponent },
+   { path: 'crear-localidad', component : CrearLocalidadComponent},
+   { path: 'principal', component : PrincipalComponent},
    { path: 'crear-cupon', component : CrearCuponComponent},
    { path: 'editar-cupon', component : EditarCuponComponent},
    { path: 'vista-cupon', component : VistaCuponComponent},
