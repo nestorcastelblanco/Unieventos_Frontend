@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PublicoService } from '../../servicios/publico.service';
@@ -15,16 +16,22 @@ import { CrearEventoDTO } from '../../dto/EventoDTOs/CrearEventoDTO';
 })
 export class CrearEventoComponent {
 
+  
   crearEventoForm!: FormGroup;
   tiposDeEvento: string[] = [];
   ciudades: string[] = [];
+  localidades: string[] = []; // Agregamos la propiedad localidades
   imagenPortada?: File;
   imagenLocalidades?: File;
 
-  constructor(private formBuilder: FormBuilder, private publicoService: PublicoService, private adminService: AdministradorService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, private publicoService: PublicoService, private adminService: AdministradorService) {
     this.crearFormulario();
     this.listarCiudades();
     this.listarTipos();
+  }
+
+  navigateToCrearLocalidad() {
+  this.router.navigate(['/crear-localidad']);
   }
 
   private crearFormulario() {
@@ -47,7 +54,8 @@ export class CrearEventoComponent {
         this.imagenPortada = file;
       }
     }
-  }  
+  }
+  
 
   public crearEvento() {
     const crearEventoDTO = this.crearEventoForm.value as CrearEventoDTO;

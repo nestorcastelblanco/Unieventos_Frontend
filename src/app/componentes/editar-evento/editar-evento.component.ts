@@ -107,6 +107,10 @@ export class EditarEventoComponent implements OnInit {
     });
   }
 
+  navigateToCrearLocalidad() {
+    this.router.navigate(['/crear-localidad']);
+  }
+
   // public guardarCambios(): void {
   //   if (this.editarEventoForm.invalid) {
   //     return;

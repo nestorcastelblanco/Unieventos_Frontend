@@ -8,7 +8,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
       .form-control {
-          width: 100%;
+        width: 100%;
+      }
+      .btn-custom {
+        width: 100%; /* Esto asegura que el ancho del botón sea auto, dependiendo de su contenido */
       }
     </style>
   </head>
@@ -22,11 +25,11 @@
                  alt="Logo Unieventos" 
                  height="150px" 
                  width="150px">
-          </figure>
+        </figure>
         <h2>Crear Localidad</h2>
       </div>
 
-      <form class="row g-4" [formGroup]="crearLocalidadForm" >
+      <form class="row g-4" [formGroup]="crearLocalidadForm">
         
         <div class="col-md-6">
           <label class="form-label">Nombre:</label>
@@ -43,8 +46,10 @@
           <input type="number" formControlName="capacidad" class="form-control" placeholder="Capacidad de la localidad" required>
         </div>
 
-        <div class="col-12 text-center">
-          <button type="submit" class="btn btn-success">Crear Localidad</button>
+        <!-- Botones debajo del formulario -->
+        <div class="col-12 text-center mt-3">
+          <button type="button" class="btn btn-secondary btn-custom" [routerLink]="'/crear-evento'">Volver</button>
+          <button type="submit" class="btn btn-success btn-custom mt-3">Crear Localidad</button>
         </div>
 
       </form>

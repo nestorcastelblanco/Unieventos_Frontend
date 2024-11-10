@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';  // Importar RouterModule
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { PublicoService } from '../../servicios/publico.service';  // Asegúrate de tener el servicio adecuado
 // import { LocalidadDTO } from '../../dto/EventosDTOs/LocalidadDTO';  // Asegúrate de que la ruta esté correcta
@@ -8,7 +9,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-crear-localidad',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './crear-localidad.component.html',
   styleUrls: ['./crear-localidad.component.css']
 })

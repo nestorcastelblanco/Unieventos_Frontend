@@ -56,12 +56,25 @@
           <input type="text" formControlName="ciudad" class="form-control" placeholder="Ciudad del evento" required>
         </div>
 
+        <!-- Combo box de Localidades con botones para guardar y crear -->
+        <div class="col-md-6">
+          <label class="form-label">Localidad:</label>
+          <div class="d-flex align-items-center">
+            <select formControlName="localidad" class="form-select me-2" required>
+              <option value="">Seleccione una localidad</option>
+              <option *ngFor="let localidad of localidades" [value]="localidad">{{ localidad }}</option>
+            </select>
+            <button type="button" class="btn btn-success btn-sm me-2" >Guardar Localidad</button>
+            <button type="button" class="btn btn-primary btn-sm" (click)="navigateToCrearLocalidad()">Crear Localidad</button>
+          </div>
+        </div>
+
         <!-- Campo de Imagen del Evento -->
         <div class="mb-3 d-flex gap-2">
             <label for="imagenEvento">Imagen del evento:</label>
             <input id="imagenEvento" type="file" (change)="onFileChange($event, 'evento')" class="form-control" />
             <button type="button" class="btn btn-primary" (click)="subirImagen('evento')">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
+              <i class="fa-solid fa-cloud-arrow-up"></i>
             </button>
         </div>
 
@@ -70,7 +83,7 @@
             <label for="imagenPortada">Imagen de la localidad:</label>
             <input id="imagenPortada" type="file" (change)="onFileChange($event, 'portada')" class="form-control" />
             <button type="button" class="btn btn-primary" (click)="subirImagen('portada')">
-            <i class="fa-solid fa-cloud-arrow-up"></i>
+              <i class="fa-solid fa-cloud-arrow-up"></i>
             </button>
         </div>
 
