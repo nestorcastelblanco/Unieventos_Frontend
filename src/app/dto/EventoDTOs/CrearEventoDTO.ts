@@ -1,4 +1,4 @@
-import { LocalidadDTO } from "./LocalidadDTO"
+import { Localidades } from "./localidades"
 
 export interface CrearEventoDTO {
     nombre:string,
@@ -10,5 +10,5 @@ export interface CrearEventoDTO {
     imagenPortada:string,
     imagenLocalidades:string,
     estado:string,
-    localidades: LocalidadDTO[]
+    localidades: Localidades[]
  }
