@@ -18,6 +18,7 @@ import { VistaEventoComponentComponent } from './componentes/vista-evento-compon
 import { EditarEventoComponent } from './componentes/editar-evento/editar-evento.component';
 import { CrearLocalidadComponent } from './componentes/crear-localidad/crear-localidad.component';
 import { PrincipalComponent } from './componentes/principal/principal.component';
+import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
@@ -39,6 +40,7 @@ export const routes: Routes = [
    { path: 'crear-cupon', component : CrearCuponComponent},
    { path: 'editar-cupon', component : EditarCuponComponent},
    { path: 'vista-cupon', component : VistaCuponComponent},
+   { path: 'vista-carrito', component : CarritoComponent},
    { path: 'editar-perfil', component : EditarPerfilComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] }},
    { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
    { path: 'registro', component: RegistroComponent, canActivate: [LoginGuard] },

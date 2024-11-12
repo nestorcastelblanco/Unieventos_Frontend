@@ -21,6 +21,11 @@ export class AdministradorService {
 
  constructor(private http: HttpClient) { }
 
+ public obtenerCupon(id: string): Observable<MensajeDTO> {
+  console.log("Requesting coupon information for id:", id);
+  return this.http.get<MensajeDTO>(`${this.adminURL}/cupon/obtener-informacion/${id}`);
+  }
+
 
  public crearEvento(crearEventoDTO: CrearEventoDTO): Observable<MensajeDTO> {
    return this.http.post<MensajeDTO>(`${this.adminURL}/evento/crear`, crearEventoDTO);
