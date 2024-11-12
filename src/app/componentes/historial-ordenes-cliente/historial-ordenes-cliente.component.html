@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <!-- Título y Logo -->
+    <div class="text-center mb-4">
+      <h1 class="fw-light display-3">Historial de Órdenes</h1>
+      <figure class="figure">
+        <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/logoUnieventos.png?alt=media&token=2f08a9d2-d0e5-4a8f-93ec-5524216aa0c9" 
+             class="rounded-circle"
+             alt="Logo Unieventos" 
+             height="150px" 
+             width="150px">
+      </figure>
+    </div>
+  
+    <!-- Mensaje de error si falla la carga de órdenes -->
+    <div *ngIf="errorMensaje" class="alert alert-danger" role="alert">
+      {{ errorMensaje }}
+    </div>
+  
+    <!-- Tabla para mostrar el historial de órdenes -->
+    <div class="table-responsive" *ngIf="historialOrdenes.length > 0">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th class="text-center">ID Orden</th>
+            <th class="text-center">Fecha</th>
+            <th class="text-center">Total</th>
+            <th class="text-center">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let orden of historialOrdenes">
+            <td class="text-center">{{ orden.id }}</td>
+            <td class="text-center">{{ orden.fecha }}</td>
+            <td class="text-center">{{ orden.total.valueOf() | currency }}</td>
+            <td class="text-center">{{ orden.estado }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Mensaje si no hay órdenes en el historial -->
+    <div *ngIf="historialOrdenes.length === 0 && !errorMensaje" class="text-center">
+      No hay órdenes en el historial.
+    </div>
+  </div>
+  

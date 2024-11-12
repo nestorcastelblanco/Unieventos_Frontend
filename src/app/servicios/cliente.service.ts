@@ -28,8 +28,8 @@ export class ClienteService {
   } 
 
   public obtenerOrdenesUsuario(id: string): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/usuario/{idUsuario}${id}`);
-  }
+    return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/usuario/${id}`);
+  }  
 
   public obtenerCupon(id: string): Observable<MensajeDTO> {
     console.log("Requesting coupon information for id:", id);

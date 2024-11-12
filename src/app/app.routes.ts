@@ -17,8 +17,10 @@ import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.co
 import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
 import { EditarEventoComponent } from './componentes/editar-evento/editar-evento.component';
 import { CrearLocalidadComponent } from './componentes/crear-localidad/crear-localidad.component';
-import { PrincipalComponent } from './componentes/principal/principal.component';
+import { PrincipalComponent } from './principal/principal.component';
 import { CarritoComponent } from './componentes/carrito/carrito.component';
+import { HistorialOrdenesComponent } from './componentes/historial-ordenes/historial-ordenes.component';
+import { HistorialOrdenesClienteComponent } from './componentes/historial-ordenes-cliente/historial-ordenes-cliente.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
@@ -51,4 +53,6 @@ export const routes: Routes = [
    { path: 'pagar-evento', component: PagosEventoComponent },
    { path: 'vista-carrito', component : CarritoComponent},
    { path: 'crear-localidad', component: CrearLocalidadComponent },
+   { path: 'historial-ordenes', component: HistorialOrdenesComponent},
+   { path: 'historial-ordenes-cliente', component: HistorialOrdenesClienteComponent}
 ]
