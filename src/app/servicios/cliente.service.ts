@@ -31,6 +31,12 @@ export class ClienteService {
     return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/usuario/{idUsuario}${id}`);
   }
 
+  public obtenerCupon(id: string): Observable<MensajeDTO> {
+    console.log("Requesting coupon information for id:", id);
+    return this.http.get<MensajeDTO>(`${this.clienteURL}/cupon/obtener-informacion/${id}`);
+}
+
+
   public obtenerHistorialOrdenes(): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/historial`);
   }

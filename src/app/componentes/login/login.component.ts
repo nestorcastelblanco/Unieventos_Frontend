@@ -39,8 +39,8 @@ export class LoginComponent {
     this.publicoService.iniciarSesion(loginDTO).subscribe({
       next: (data) => {
         Swal.fire({
-          title: 'Inicio de Sesion Correcto',
-          text: 'Las credenciales son validas',
+          title: 'Inicio de Sesión Correcto',
+          text: 'Las credenciales son válidas',
           icon: 'success',
           confirmButtonText: "Ingresar",
         });
@@ -80,3 +80,4 @@ export class LoginComponent {
     this.router.navigate(['/registro']);
   }
 }
+

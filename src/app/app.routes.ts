@@ -18,6 +18,7 @@ import { VistaEventoComponentComponent } from './componentes/vista-evento-compon
 import { EditarEventoComponent } from './componentes/editar-evento/editar-evento.component';
 import { CrearLocalidadComponent } from './componentes/crear-localidad/crear-localidad.component';
 import { PrincipalComponent } from './componentes/principal/principal.component';
+import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
@@ -48,9 +49,6 @@ export const routes: Routes = [
    { path: 'eventos-admin', component: EventosAdminComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'evento/:id', component: VistaEventoComponentComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
+   { path: 'vista-carrito', component : CarritoComponent},
    { path: 'crear-localidad', component: CrearLocalidadComponent },
-   { path: 'principal', component: PrincipalComponent },
-
-   // Ruta comodín para redirigir a la página principal si no se encuentra la ruta
-   { path: '**', pathMatch: 'full', redirectTo: '' }
-];
+]

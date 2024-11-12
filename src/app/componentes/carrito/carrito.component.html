@@ -1,0 +1,78 @@
+<section class="container py-5">
+  <div class="row">
+    <!-- Sección del Carrito (Izquierda) -->
+    <div class="col-md-8 cart-section">
+      <h1 class="text-center mb-4">Tu carrito</h1>
+      <div class="cart-items">
+        @for (item of detalles; track $index) {
+          <!-- Iteración de cada elemento en el carrito -->
+        <div class="card mb-3 shadow-sm">
+          <div class="row g-0">
+            <!-- Imagen del evento -->
+            <div class="col-md-4">
+              <img [src]="item.evento.imagenPoster" alt="{{ item.evento.nombre }}" class="img-fluid rounded-start" style="width: 100%; height: auto;" />
+            </div>
+            <!-- Detalles del evento -->
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.evento.nombre }}</h5>
+                <p class="card-text"><strong>Descripción:</strong> {{ item.evento.descripcion }}</p>
+                <p class="card-text"><strong>Ubicación:</strong> {{ item.evento.direccion }}, {{ item.evento.ciudad }}</p>
+                <p class="card-text"><strong>Fecha:</strong> {{ item.evento.fecha }}</p>
+                <p class="card-text"><strong>Localidad:</strong> {{ item.nombreLocalidad }} - <strong>Precio:</strong> {{ item.evento.localidades[0].precio }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="badge bg-secondary">Tickets: {{ item.cantidad }}</div>
+                  <button class="btn btn-outline-danger btn-sm" (click)="eliminarItem(item.idDetalleCarrito, item.idCarrito)">
+                    <i class="bi bi-trash"></i> Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Sección de Descripción de Compra (Derecha) -->
+    <div class="col-md-4 purchase-section p-4">
+      <h3 class="text-center mb-4">Resumen de Compra</h3>
+      
+      <!-- Formulario para el código de cupón -->
+      <form [formGroup]="cuponForm" (ngSubmit)="aplicarCupon()">
+        <div class="mb-3">
+          <label for="coupon" class="form-label">Código de cupón</label>
+          <input type="text" id="coupon" class="form-control" formControlName="codigoCupon" placeholder="Ingrese su cupón" />
+          <button type="submit" class="btn btn-outline-primary mt-2 w-100">Aplicar Cupón</button>
+        </div>
+      </form>
+
+      <!-- Resumen de compra -->
+      <div class="summary-content">
+        <div class="d-flex justify-content-between mt-3 fs-3"> <!-- Aumenta el tamaño de la fuente -->
+          <span>Tickets</span>
+          <span>{{ tickets }}</span>
+        </div>
+        <div class="d-flex justify-content-between fs-4"> <!-- Aumenta el tamaño de la fuente -->
+          <span>Subtotal</span>
+          <span>{{ subtotal }}</span>
+        </div>
+        <div class="d-flex justify-content-between fs-4">
+          <span>Descuento</span>
+          <span>{{ descuento }}</span>
+        </div>
+        <div class="d-flex justify-content-between fs-4">
+          <span>Impuesto</span>
+          {{ impuesto }}
+        </div>
+        <div class="d-flex justify-content-between border-top mt-2 pt-2 fs-4">
+          <strong>Total</strong>
+          <strong>{{ total }}</strong>
+        </div>
+      </div>
+      <!-- Botón de pago -->
+      <button class="btn btn-primary btn-pay mt-4 w-100 fs-5">Pagar</button>
+    </div>
+  </div>
+</section>
+

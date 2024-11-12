@@ -1,58 +1,58 @@
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Crear Localidad - Unieventos</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-      .form-control {
-        width: 100%;
-      }
-      .btn-custom {
-        width: 100%; /* Esto asegura que el ancho del botón sea auto, dependiendo de su contenido */
-      }
-    </style>
-  </head>
-  <body>
-    <section class="container py-5">
-      <div class="text-center mb-4">
-        <h1 class="fw-light display-3">Unieventos</h1>
-        <figure class="figure">
-            <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/logoUnieventos.png?alt=media&token=2f08a9d2-d0e5-4a8f-93ec-5524216aa0c9" 
-                 class="rounded-circle"
-                 alt="Logo Unieventos" 
-                 height="150px" 
-                 width="150px">
-        </figure>
-        <h2>Crear Localidad</h2>
-      </div>
-
-      <form class="row g-4" [formGroup]="crearLocalidadForm">
-        
-        <div class="col-md-6">
-          <label class="form-label">Nombre:</label>
-          <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre de la localidad" required>
+  <!doctype html>
+  <html lang="es">
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <title>Crear Localidad - Unieventos</title>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+      <style>
+        .form-control {
+          width: 100%;
+        }
+        .btn-custom {
+          width: 100%; /* Esto asegura que el ancho del botón sea auto, dependiendo de su contenido */
+        }
+      </style>
+    </head>
+    <body>
+      <section class="container py-5">
+        <div class="text-center mb-4">
+          <h1 class="fw-light display-3">Unieventos</h1>
+          <figure class="figure">
+              <img src="https://firebasestorage.googleapis.com/v0/b/unieventos-aca74.appspot.com/o/logoUnieventos.png?alt=media&token=2f08a9d2-d0e5-4a8f-93ec-5524216aa0c9" 
+                  class="rounded-circle"
+                  alt="Logo Unieventos" 
+                  height="150px" 
+                  width="150px">
+          </figure>
+          <h2>Crear Localidad</h2>
         </div>
 
-        <div class="col-md-6">
-          <label class="form-label">Precio:</label>
-          <input type="number" formControlName="precio" class="form-control" placeholder="Precio de la localidad" required>
-        </div>
+        <form class="row g-4" [formGroup]="crearLocalidadForm">
+          
+          <div class="col-md-6">
+            <label class="form-label">Nombre:</label>
+            <input type="text" formControlName="nombre" class="form-control" placeholder="Nombre de la localidad" required>
+          </div>
 
-        <div class="col-md-6">
-          <label class="form-label">Capacidad:</label>
-          <input type="number" formControlName="capacidad" class="form-control" placeholder="Capacidad de la localidad" required>
-        </div>
+          <div class="col-md-6">
+            <label class="form-label">Precio:</label>
+            <input type="number" formControlName="precio" class="form-control" placeholder="Precio de la localidad" required>
+          </div>
 
-        <!-- Botones debajo del formulario -->
-        <div class="col-12 text-center mt-3">
-          <button type="button" class="btn btn-secondary btn-custom" [routerLink]="'/crear-evento'">Volver</button>
-          <button type="submit" class="btn btn-success btn-custom mt-3">Crear Localidad</button>
-        </div>
+          <div class="col-md-6">
+            <label class="form-label">Capacidad:</label>
+            <input type="number" formControlName="capacidad" class="form-control" placeholder="Capacidad de la localidad" required>
+          </div>
 
-      </form>
-    </section>
-  </body>
-</html>
+          <!-- Botones debajo del formulario -->
+          <div class="col-12 text-center mt-3">
+            <button type="button" class="btn btn-secondary btn-custom" [routerLink]="'/crear-evento'">Volver</button>
+            <button type="submit" class="btn btn-success btn-custom mt-3">Crear Localidad</button>
+          </div>
+
+        </form>
+      </section>
+    </body>
+  </html>

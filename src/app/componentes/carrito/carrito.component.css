@@ -1,0 +1,25 @@
+/* Aumentar tamaño de los textos importantes */
+.fs-3 {
+    font-size: 1.5rem;
+  }
+  
+  .fs-4 {
+    font-size: 1.25rem;
+  }
+  
+  /* Contenedor de la tarjeta de evento */
+  .card {
+    margin-bottom: 15px;
+  }
+  
+  /* Asegurarse de que el botón de eliminar tenga margen */
+  .btn-outline-danger {
+    margin-left: 10px;
+  }
+  
+  /* Mejorar la visibilidad de los tickets */
+  .badge.bg-secondary {
+    font-size: 1.25rem;
+    padding: 10px;
+  }
+  
