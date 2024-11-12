@@ -45,16 +45,13 @@ export class LoginComponent {
           confirmButtonText: "Ingresar",
         });
         
-        // Guardar token y verificar rol para redireccionar
-        this.tokenService.setToken(data.respuesta.token); 
-        
-        // Obtener rol directamente desde el token para redirigir al destino adecuado
+        this.tokenService.setToken(data.respuesta.token);
         const userRole = this.tokenService.getRol();  
         
         if (userRole === 'ADMINISTRADOR') {
-          this.router.navigate(['/eventos-admin']);  // Redirige a eventos-admin si es ADMIN
-        } else {
-          this.router.navigate(['/inicio']);  // Si no es admin, redirige al inicio
+          this.router.navigate(['/eventos-admin']);
+        } else if (userRole === 'CLIENTE') {
+          this.router.navigate(['/inicio']);
         }
       },
       error: (error) => {

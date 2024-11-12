@@ -1,54 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Buffer } from "buffer";
-import { HttpClient } from '@angular/common/http'
-import { ClienteService } from './cliente.service';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 
 const TOKEN_KEY = "AuthToken";
 
-
 @Injectable({
- providedIn: 'root'
+  providedIn: 'root'
 })
 export class TokenService {
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this.isLogged());
 
- constructor(private router: Router, private clienteService : ClienteService) { }
+  constructor(private router: Router) { }
 
- public setToken(token: string) {
-  window.sessionStorage.removeItem(TOKEN_KEY);
-  window.sessionStorage.setItem(TOKEN_KEY, token);
-}
-
-public getToken(): string | null {
-  return sessionStorage.getItem(TOKEN_KEY);
-}
-
-
-public isLogged(): boolean {
-  if (this.getToken()) {
-    return true;
+  public setToken(token: string) {
+    window.sessionStorage.setItem(TOKEN_KEY, token);
+    this.isLoggedInSubject.next(true);  // Emitir que el usuario ha iniciado sesión
   }
-  return false;
-}
 
-public login(token: string) {
-  this.setToken(token);
-  
-  const rol = this.getRol();
-  const destino = rol === "ADMINISTRADOR" ? "/eventos-admin" : "/inicio";
-  
-  this.router.navigate([destino]);
-}
+  public getToken(): string | null {
+    return sessionStorage.getItem(TOKEN_KEY);
+  }
 
- 
+  public isLogged(): boolean {
+    return !!this.getToken();
+  }
 
-public logout() {
-  window.sessionStorage.clear();
-  this.router.navigate(["/login"]).then(() => {
-    window.location.reload();
-  });
- }
+  public getIsLoggedIn(): Observable<boolean> {
+    return this.isLoggedInSubject.asObservable();
+  }
+
+  public logout() {
+    window.sessionStorage.clear();
+    this.isLoggedInSubject.next(false);  // Emitir que el usuario ha cerrado sesión
+    this.router.navigate(["/login"]).then(() => {
+      window.location.reload();
+    });
+  }
  
 
 private decodePayload(token: string): any {
@@ -67,7 +55,7 @@ public getIDCuenta(): string {
   return "";
  }
  
- 
+
  public getRol(): string {
   const token = this.getToken();
   if (token) {
