@@ -4,13 +4,16 @@ import { MensajeDTO } from '../dto/TokenDTOs/MensajeDTO';
 import { Observable } from 'rxjs';
 import { EditarEventoDTO } from '../dto/EventoDTOs/EditarEventoDTO';
 import { CrearEventoDTO } from '../dto/EventoDTOs/CrearEventoDTO';
+import { LocalidadDTO } from '../dto/EventoDTOs/LocalidadDTO';
 
 
 @Injectable({
  providedIn: 'root'
 })
 export class AdministradorService {
-
+ 
+ 
+  
 
  private adminURL = "http://localhost:8080/api/admin";
  private publicURL = "http://localhost:8080/api/publico"
@@ -22,8 +25,7 @@ export class AdministradorService {
  public crearEvento(crearEventoDTO: CrearEventoDTO): Observable<MensajeDTO> {
    return this.http.post<MensajeDTO>(`${this.adminURL}/evento/crear`, crearEventoDTO);
  }
-
-
+ 
  public actualizarEvento(editarEventoDTO: EditarEventoDTO): Observable<MensajeDTO> {
    return this.http.put<MensajeDTO>(`${this.adminURL}/evento/editar`, editarEventoDTO);
  }

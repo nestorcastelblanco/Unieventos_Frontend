@@ -23,6 +23,9 @@ export class AuthService {
     return this.http.post<MensajeDTO>(`${this.authURL}/cupon/crear`, cuponDTO);
   }
 
+  public listarEventos(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.authURL}/listar-eventos`);
+  }
   // Método para editar un cupón
   public editarCupon(cuponDTO: EditarCuponDTO): Observable<MensajeDTO> {
     return this.http.put<MensajeDTO>(`${this.authURL}/cupon/editar`, cuponDTO);

@@ -47,7 +47,7 @@ export class LoginComponent {
         });
         console.log(data.respuesta.token)
         this.tokenService.login(data.respuesta.token);
-        this.router.navigate(['/inicio']);
+        this.router.navigate(['/vista-eventos']);
       },
       error: (error) => {
         Swal.fire({
