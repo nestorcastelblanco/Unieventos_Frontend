@@ -28,7 +28,7 @@ export class ClienteService {
   } 
 
   public obtenerOrdenesUsuario(id: string): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/usuario/{idUsuario}${id}`);
+    return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/usuario/${id}`);
   }
 
   public obtenerCupon(id: string): Observable<MensajeDTO> {
@@ -44,11 +44,11 @@ export class ClienteService {
   public obtenerDetallesOrden(idOrden : string): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/detalles/{idOrden}`);
   }
-
-  public realizarPago(idOrden : string): Observable<MensajeDTO> {
-    return this.http.post<MensajeDTO>(`${this.clienteURL}/orden/realizar-pago`,idOrden);
-  }
   
+  public realizarPago(idOrden: string): Observable<MensajeDTO> {
+    return this.http.post<MensajeDTO>(`${this.clienteURL}/orden/realizar-pago/${idOrden}`, {});
+  }
+    
   public agregarItemCarrito(eventoCarrito : EventoCarritoDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.clienteURL}/carrito/agregar-item`,eventoCarrito);
   }

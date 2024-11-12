@@ -21,6 +21,8 @@ import { PrincipalComponent } from './componentes/principal/principal.component'
 import { CarritoComponent } from './componentes/carrito/carrito.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
+import { Orden } from './dto/OrdenDTOs/orden';
+import { OrdenComponent } from './componentes/orden/orden.component';
 
 export const routes: Routes = [
    { path: '', component: PrincipalComponent },  // Ruta inicial
@@ -51,4 +53,8 @@ export const routes: Routes = [
    { path: 'pagar-evento', component: PagosEventoComponent },
    { path: 'vista-carrito', component : CarritoComponent},
    { path: 'crear-localidad', component: CrearLocalidadComponent },
+
+   { path: 'vista-ordenes', component : OrdenComponent},
+
+
 ]
