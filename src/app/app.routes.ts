@@ -22,29 +22,35 @@ import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 
 export const routes: Routes = [
-   { path: '', component: PrincipalComponent },
+   { path: '', component: PrincipalComponent },  // Ruta inicial
    { path: 'inicio', component: InicioComponent },
-   { path: 'registro', component: RegistroComponent },
-   { path: "historial-eventos", component: HistorialEventosComponent },
-   { path: 'gestion-eventos', component: GestionEventosComponent },
+   { path: 'registro', component: RegistroComponent, canActivate: [LoginGuard] },  // Protegida con LoginGuard
+   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },  // Protegida con LoginGuard
+
+   // Rutas de gestión de eventos
+   { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   { path: 'gestion-eventos', component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   { path: 'historial-eventos', component: HistorialEventosComponent },
+   { path: 'editar-evento/:id', component: EditarEventoComponent },
+
+   // Rutas de cupones
+   { path: 'crear-cupon', component: CrearCuponComponent },
+   { path: 'editar-cupon', component: EditarCuponComponent },
+   { path: 'vista-cupon', component: VistaCuponComponent },
+
+   // Rutas de perfil y gestión de cuenta
+   { path: 'editar-perfil', component: EditarPerfilComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] }},
    { path: 'cambiar-password', component: CambiarPasswordComponent },
    { path: 'activar-cuenta', component: ActivarCuentaComponent },
    { path: 'enviar-codigo', component: EnviarCodigoComponent },
+
+   // Rutas de administración y eventos
+   { path: 'eventos-admin', component: EventosAdminComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   { path: 'evento/:id', component: VistaEventoComponentComponent },
    { path: 'pagar-evento', component: PagosEventoComponent },
-   { path: 'eventos-admin', component: EventosAdminComponent },
-   { path: 'evento/:id', component : VistaEventoComponentComponent},
-   { path: 'editar-evento/:id', component : EditarEventoComponent },
-   { path: 'crear-localidad', component : CrearLocalidadComponent},
-   { path: 'principal', component : PrincipalComponent},
-   { path: 'crear-cupon', component : CrearCuponComponent},
-   { path: 'editar-cupon', component : EditarCuponComponent},
-   { path: 'vista-cupon', component : VistaCuponComponent},
-   { path: 'editar-perfil', component : EditarPerfilComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] }},
-   { path: 'login', component: LoginComponent, canActivate: [LoginGuard] },
-   { path: 'registro', component: RegistroComponent, canActivate: [LoginGuard] },
-   { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
-   { path: "gestion-eventos", component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
-   //{ path: 'panel-admin', component: PanelAdminComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
-   //{ path: "historial-compras", component: HistorialComprasComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] } }
-   { path: "**", pathMatch: "full", redirectTo: "" }
+   { path: 'crear-localidad', component: CrearLocalidadComponent },
+   { path: 'principal', component: PrincipalComponent },
+
+   // Ruta comodín para redirigir a la página principal si no se encuentra la ruta
+   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

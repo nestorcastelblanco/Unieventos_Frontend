@@ -5,8 +5,6 @@ import { PublicoService } from '../../servicios/publico.service';
 import Swal from 'sweetalert2';
 import { LoginDTO } from '../../dto/CuentaDTOs/LoginDTO';
 import { TokenService } from '../../servicios/token.service';
-import { HeaderComponent } from "../header/header.component";
-
 
 @Component({
   selector: 'app-login',
@@ -19,7 +17,12 @@ export class LoginComponent {
 
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private publicoService: PublicoService, private tokenService: TokenService) { 
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private publicoService: PublicoService,
+    private tokenService: TokenService
+  ) { 
     this.crearFormulario();
   }
 
@@ -32,7 +35,7 @@ export class LoginComponent {
 
   public login() {
     const loginDTO = this.loginForm.value as LoginDTO;
-    console.log(loginDTO);
+    
     this.publicoService.iniciarSesion(loginDTO).subscribe({
       next: (data) => {
         Swal.fire({
@@ -40,14 +43,19 @@ export class LoginComponent {
           text: 'Las credenciales son validas',
           icon: 'success',
           confirmButtonText: "Ingresar",
-          customClass: {
-            title: 'swal-title-custom',
-            htmlContainer: 'swal-text-custom'
-          }
         });
-        console.log(data.respuesta.token)
-        this.tokenService.login(data.respuesta.token);
-        this.router.navigate(['/inicio']);
+        
+        // Guardar token y verificar rol para redireccionar
+        this.tokenService.setToken(data.respuesta.token); 
+        
+        // Obtener rol directamente desde el token para redirigir al destino adecuado
+        const userRole = this.tokenService.getRol();  
+        
+        if (userRole === 'ADMINISTRADOR') {
+          this.router.navigate(['/eventos-admin']);  // Redirige a eventos-admin si es ADMIN
+        } else {
+          this.router.navigate(['/inicio']);  // Si no es admin, redirige al inicio
+        }
       },
       error: (error) => {
         Swal.fire({
@@ -55,20 +63,15 @@ export class LoginComponent {
           title: 'Error',
           text: error.error.respuesta,
           confirmButtonText: 'Reintentar',
-          customClass: {
-            title: 'swal-title-custom',
-            htmlContainer: 'swal-text-custom'
-          }
         });
       },
     });
   }
-  
-   
 
   public campoEsValido(campo: string): boolean {
     return this.loginForm.controls[campo].valid && this.loginForm.controls[campo].touched;
   }
+  
   public abrirVentanaRecuperacion(){
     this.router.navigate(['/enviar-codigo']);
   }

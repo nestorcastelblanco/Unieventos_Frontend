@@ -34,12 +34,13 @@ public isLogged(): boolean {
 
 public login(token: string) {
   this.setToken(token);
+  
   const rol = this.getRol();
-  let destino = rol == "ADMINISTRADOR" ? "/panel-admin" : "/";
-  this.router.navigate([destino]).then(() => {
-    window.location.reload();
-  });
- }
+  const destino = rol === "ADMINISTRADOR" ? "/eventos-admin" : "/inicio";
+  
+  this.router.navigate([destino]);
+}
+
  
 
 public logout() {

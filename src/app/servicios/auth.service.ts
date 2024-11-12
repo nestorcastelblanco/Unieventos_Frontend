@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { MensajeDTO } from '../dto/TokenDTOs/MensajeDTO';
 import { CrearCuponDTO } from '../dto/CuponDTOs/crear-cupon-dto';
 import { EditarCuponDTO } from '../dto/CuponDTOs/editar-cupon-dto';
-import { InformacionCuponDTO } from '../dto/CuponDTOs/informacion-cupon-dto';
 
 
 @Injectable({
