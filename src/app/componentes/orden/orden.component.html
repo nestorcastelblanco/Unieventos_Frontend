@@ -1,0 +1,117 @@
+<section class="container py-5">
+    <div class="row justify-content-center">
+      <!-- Sección de Órdenes (Izquierda) -->
+      <div class="col-md-10 col-lg-8 cart-section mb-4">
+        <h1 class="text-center mb-5 display-4">Tus Órdenes</h1>
+
+        <!-- Condición para mostrar órdenes -->
+        @if (!loading && ordenes.length > 0) {
+          @for (item of ordenes; track $index) {
+            <div class="cart-item mb-5">
+              <div class="order-details p-5 border shadow-lg rounded">
+                <h5 class="mb-4">Orden ID: {{ item.id }}</h5>
+                <p><strong>Cliente:</strong> {{ item.idCliente }}</p>
+                <p><strong>Fecha:</strong> {{ item.fecha }}</p>
+                <p><strong>Total:</strong> {{ item.total }}</p>
+                <p><strong>Estado:</strong> {{ item.estado }}</p>
+
+                <!-- Detalles de los productos en la orden -->
+                @for (detalle of item.detallesOrden; track $index) {
+                  <div class="order-detail mt-4">
+                    <h6>Evento: {{ detalle.idEvento }}</h6>
+                    <p><strong>Localidad:</strong> {{ detalle.nombreLocalidad }}</p>
+                    <p><strong>Cantidad:</strong> {{ detalle.cantidad }}</p>
+                    <p><strong>Precio:</strong> {{ detalle.precio }}</p>
+                  </div>
+                }
+
+                <!-- Botón de pago dentro de la orden -->
+                <button (click)="pagarOrden(item.id)" class="btn btn-primary btn-pay mt-4 w-100">Pagar</button>
+              </div>
+            </div>
+          }
+        }
+
+        <!-- Mensaje cuando no hay órdenes -->
+        @if (!loading && ordenes.length === 0) {
+          <div class="no-orders text-center">
+            <p class="lead">No tienes órdenes disponibles.</p>
+          </div>
+        }
+      </div>
+    </div>
+</section>
+
+<!-- Estilos mejorados -->
+<style>
+  .cart-section {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .order-details {
+    background-color: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .order-details h5, .order-detail h6 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .order-details p {
+    font-size: 1.25rem;
+    margin: 5px 0;
+  }
+
+  .order-detail {
+    margin-top: 15px;
+  }
+
+  .order-detail h6 {
+    font-weight: 600;
+  }
+
+  .no-orders {
+    color: #555;
+    font-size: 1.25rem;
+    margin-top: 25px;
+  }
+
+  .btn-pay {
+    font-size: 1.4rem;
+    padding: 15px;
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .btn-pay:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  .cart-item {
+    margin-bottom: 30px;
+  }
+
+  .order-details {
+    background-color: #fff;
+  }
+
+  @media (max-width: 768px) {
+    .order-details h5, .order-detail h6, .order-details p {
+      font-size: 1rem;
+    }
+
+    .btn-pay {
+      font-size: 1.2rem;
+    }
+  }
+</style>

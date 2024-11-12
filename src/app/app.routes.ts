@@ -23,6 +23,8 @@ import { HistorialOrdenesComponent } from './componentes/historial-ordenes/histo
 import { HistorialOrdenesClienteComponent } from './componentes/historial-ordenes-cliente/historial-ordenes-cliente.component';
 import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
+import { Orden } from './dto/OrdenDTOs/orden';
+import { OrdenComponent } from './componentes/orden/orden.component';
 
 export const routes: Routes = [
    { path: '', component: PrincipalComponent },  // Ruta inicial
@@ -54,5 +56,6 @@ export const routes: Routes = [
    { path: 'vista-carrito', component : CarritoComponent},
    { path: 'crear-localidad', component: CrearLocalidadComponent },
    { path: 'historial-ordenes', component: HistorialOrdenesComponent},
-   { path: 'historial-ordenes-cliente', component: HistorialOrdenesClienteComponent}
+   { path: 'historial-ordenes-cliente', component: HistorialOrdenesClienteComponent},
+   { path: 'vista-ordenes', component : OrdenComponent}
 ]

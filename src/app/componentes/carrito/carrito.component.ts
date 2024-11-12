@@ -8,6 +8,7 @@ import { ClienteService } from '../../servicios/cliente.service';
 import { TokenService } from '../../servicios/token.service';
 import { PublicoService } from '../../servicios/publico.service';
 import { EventoEliminarCarritoDTO } from '../../dto/CarritoDTOs/evento-eliminar-carrito-dto';
+import { CrearOrdenDTO } from '../../dto/OrdenDTOs/crear-orden-dto';
 
 @Component({
   selector: 'app-carrito',
@@ -96,7 +97,6 @@ export class CarritoComponent {
       idCarrito: idCarrito
     };
 
-
     this.clienteService.eliminarItemCarrito(eventoEliminar).subscribe({
       next: (data) => {
         this.vistaCarrito = data.respuesta;
@@ -170,5 +170,42 @@ export class CarritoComponent {
   // Función para calcular el total: subtotal - descuento + impuesto
   calcularTotal() {
     this.total = this.subtotal - this.descuento + this.impuesto;
+  }
+
+  crearOrden() {
+    // Primero, aseguramos que el arreglo de detalles contiene los elementos que necesitamos
+    const itemsOrden = this.detalles.map(item => ({
+      idDetalleCarrito: item.idDetalleCarrito,
+      idEvento: item.evento.id,  // Usamos el id del evento que obtenemos al cargar los detalles
+      precio: item.evento.localidades[0].precio,  // O el precio correspondiente según tu lógica
+      nombreLocalidad: item.nombreLocalidad,
+      cantidad: item.cantidad
+    }));
+  
+    // Creamos el objeto para la orden
+    const orden: CrearOrdenDTO = {
+      idCliente: this.token.getIDCuenta(),  // Asegúrate de obtener el ID del cliente correctamente
+      codigoPasarela: '',  // Si tienes una pasarela de pago, inclúyela aquí
+      items: itemsOrden,   // El arreglo de items que acabamos de crear
+      total: this.total,   // El total calculado de la compra
+      codigoCupon: this.cuponForm.get('codigoCupon')?.value || ''  // Código de cupón si existe
+    };
+  
+    // Llamamos al servicio para crear la orden
+    this.clienteService.crearOrden(orden).subscribe({
+      next: (data) => {
+        if (data.respuesta) {
+          Swal.fire("Orden creada", "Tu orden se ha creado exitosamente.", "success");
+          // Después de crear la orden, puedes redirigir al usuario a la página de pago o confirmación
+          this.router.navigate(['/confirmacion-pago']);  // Ejemplo de redirección
+        } else {
+          Swal.fire("Error", data.respuesta, "error");
+        }
+      },
+      error: (error: any) => {
+        console.error("Error al crear la orden:", error);
+        Swal.fire("Error", "Hubo un problema al crear la orden.", "error");
+      }
+    });
   }
 }
