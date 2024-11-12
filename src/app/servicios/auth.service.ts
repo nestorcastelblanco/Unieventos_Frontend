@@ -33,13 +33,12 @@ export class AuthService {
     return this.http.delete<MensajeDTO>(`${this.authURL}/cupon/eliminar/${id}`);
   }
 
-  // Método para listar los tipos de cupon
-  public listarTiposCupon(): Observable<MensajeDTO> {
+  obtenerTiposCupon(): Observable<MensajeDTO> {
     return this.http.get<MensajeDTO>(`${this.authURL}/cupon/tipos`);
   }
-  // Método para listar los estados de cupon
-  public listarEstadosCupon(): Observable<MensajeDTO> {
-    return this.http.get<MensajeDTO>(`${this.authURL}/cupon/estados`);
+
+  obtenerEstadosCupon(): Observable<MensajeDTO> {
+      return this.http.get<MensajeDTO>(`${this.authURL}/cupon/estados`);
   }
 
   // Método para editar un cupón

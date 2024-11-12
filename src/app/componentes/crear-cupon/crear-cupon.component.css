@@ -122,4 +122,23 @@
   .text-center {
     text-align: center; /* Centrar texto */
   }
+
+  /* Estilo de los campos de selección */
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+  background-color: white;
+  appearance: none; /* Quita la flecha de selección (opcional) */
+}
+
+select:focus {
+  border-color: #4CAF50; /* Color del borde al hacer foco */
+  outline: none; /* Sin contorno */
+}
+
   

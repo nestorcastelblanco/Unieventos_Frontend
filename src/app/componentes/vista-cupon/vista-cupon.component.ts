@@ -1,45 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { AuthService } from '../../servicios/auth.service';
-import { CuponService } from '../../servicios/cupon.service'; 
+import { CuponService } from '../../servicios/cupon.service';
 import Swal from 'sweetalert2';
-import { InformacionCuponDTO } from '../../dto/CuponDTOs/informacion-cupon-dto';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
+import { ItemCuponDTO } from '../../dto/CuponDTOs/item-cupon-dto';
 
 @Component({
   selector: 'app-vista-cupon',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule],  // Solo importa lo necesario
   templateUrl: './vista-cupon.component.html',
   styleUrls: ['./vista-cupon.component.css']
 })
 export class VistaCuponComponent implements OnInit {
-  cupones: InformacionCuponDTO[] = []; 
-  selectedCuponId: string = ""; 
-
-  cuponForm!: FormGroup; 
+  cupones: ItemCuponDTO[] = [];
+  selectedCuponId: string = "";
 
   constructor(
-    private cuponService: CuponService, 
-    private formBuilder: FormBuilder, 
-    private router: Router, 
+    private cuponService: CuponService,
+    private router: Router,
     private authService: AuthService
   ) { }
 
-  ngOnInit(): void { 
-    this.obtenerCupones(); 
+  ngOnInit(): void {
+    this.obtenerCupones();
   }
 
   public obtenerCupones() {
     this.authService.listarCupones().subscribe({
       next: (data) => {
-        this.cupones = data.respuesta; 
+        this.cupones = data.respuesta;
       },
       error: (err) => {
         console.error('Error al cargar los cupones:', err);
       }
     });
+  }
+
+  // Esta función formatea la fecha en el formato que desees
+  formatFecha(fecha: Date): string {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return fecha.toLocaleDateString('es-ES', options); // Cambia 'es-ES' si deseas otro formato
   }
 
   public selectRow(cuponId: string) {
@@ -59,19 +61,11 @@ export class VistaCuponComponent implements OnInit {
       if (result.isConfirmed) {
         this.authService.eliminarCupon(cuponId).subscribe({
           next: (response) => {
-            Swal.fire(
-              'Eliminado!',
-              'El cupón ha sido eliminado.',
-              'success'
-            );
+            Swal.fire('Eliminado!', 'El cupón ha sido eliminado.', 'success');
             this.obtenerCupones();
           },
           error: (err) => {
-            Swal.fire(
-              'Error!',
-              'Ocurrió un error al eliminar el cupón.',
-              'error'
-            );
+            Swal.fire('Error!', 'Ocurrió un error al eliminar el cupón.', 'error');
             console.error('Error al eliminar el cupón:', err);
           }
         });
@@ -91,10 +85,5 @@ export class VistaCuponComponent implements OnInit {
         this.router.navigate(['/editar-cupon']);
       }
     }
-  }
-
-  // trackBy function para optimizar el rendimiento de *ngFor
-  trackById(index: number, cupon: InformacionCuponDTO): string {
-    return cupon.id; // Devuelve el ID del cupón para hacer el seguimiento por ID
   }
 }

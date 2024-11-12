@@ -15,8 +15,8 @@ import { InformacionCuponDTO } from '../../dto/CuponDTOs/informacion-cupon-dto';
   styleUrl: './editar-cupon.component.css'
 })
 export class EditarCuponComponent {
-  tiposCupon: string[] = [];
-  estadosCupon: string[] = [];
+  tiposCupon: string[] = ['UNICO', 'MULTIPLE'];  // Valores quemados
+  estadosCupon: string[] = ['DISPONIBLE', 'NO_DISPONIBLE'];  // Valores quemados
   codigo: string = "";
   nombre: string = "";
   descuento: string = "";
@@ -32,8 +32,6 @@ export class EditarCuponComponent {
         this.crearFormulario(cupon);
       }
     });
-    this.listarTipos();
-    this.listarEstados();
   }
 
   private crearFormulario(cupon: InformacionCuponDTO) {
@@ -70,28 +68,6 @@ export class EditarCuponComponent {
         });
       }
     });
-  }
-
-  public listarTipos() {
-    this.authService.listarTiposCupon().subscribe({
-      next: (data) => {
-          this.tiposCupon = data.respuesta; // Asigna la lista de tipos al array en el componente
-      },
-      error: (err) => {
-          console.error('Error al cargar los tipos de cupon:', err);
-      }
-  });
-  }
-
-  public listarEstados() {
-    this.authService.listarEstadosCupon().subscribe({
-      next: (data) => {
-          this.estadosCupon = data.respuesta; // Asigna la lista de tipos al array en el componente
-      },
-      error: (err) => {
-          console.error('Error al cargar los estados de cupon:', err);
-      }
-  });
   }
 
 }

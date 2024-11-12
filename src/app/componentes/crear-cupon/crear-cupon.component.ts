@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; // Importa AbstractControlOptions
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; 
 import { Router } from '@angular/router';
 import { AuthService } from '../../servicios/auth.service';
 import Swal from 'sweetalert2';
@@ -14,14 +14,12 @@ import { CrearCuponDTO } from '../../dto/CuponDTOs/crear-cupon-dto';
 })
 export class CrearCuponComponent {
 
-  tiposCupon: string[] = [];
-  estadosCupon: string[] = [];
+  tiposCupon: string[] = ['UNICO', 'MULTIPLE'];  // Valores quemados
+  estadosCupon: string[] = ['DISPONIBLE', 'NO_DISPONIBLE'];  // Valores quemados
 
   cuponForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
-    this.listarTipos();
-    this.listarEstados();
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
     this.crearFormulario();
   }
 
@@ -47,7 +45,7 @@ export class CrearCuponComponent {
           icon: 'success',
           confirmButtonText: 'Aceptar'
         });
-        this.router.navigate(['/vista-cupon']); // Redirige a la página deseada
+        this.router.navigate(['/vista-cupon']);
       },
       error: (error) => {
         Swal.fire({
@@ -59,28 +57,4 @@ export class CrearCuponComponent {
       }
     });
   }
-
-  public listarTipos() {
-    this.authService.listarTiposCupon().subscribe({
-      next: (data) => {
-          this.tiposCupon = data.respuesta; // Asigna la lista de tipos al array en el componente
-      },
-      error: (err) => {
-          console.error('Error al cargar los tipos de cupon:', err);
-      }
-  });
-  }
-
-  public listarEstados() {
-    this.authService.listarEstadosCupon().subscribe({
-      next: (data) => {
-          this.estadosCupon = data.respuesta; // Asigna la lista de tipos al array en el componente
-      },
-      error: (err) => {
-          console.error('Error al cargar los estados de cupon:', err);
-      }
-  });
-  }
-
-
 }

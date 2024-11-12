@@ -71,8 +71,8 @@
           <label class="form-label">Tipo de Cupón</label>
           <select class="form-control" formControlName="tipo">
             <option value="" disabled selected>Selecciona un tipo</option> <!-- Opción por defecto -->
-            <!-- Ciclo para mostrar cada opción en el select -->
-            @for (tipo of tiposCupon; track $index) {
+            <!-- Ciclo para mostrar cada opción en el select de tipos -->
+            @for (tipo of tiposCupon; track tipo) {
               <option [value]="tipo">{{ tipo }}</option>
             }
           </select>
@@ -82,12 +82,13 @@
           <label class="form-label">Estado de Cupón</label>
           <select class="form-control" formControlName="estado">
             <option value="" disabled selected>Selecciona un estado</option> <!-- Opción por defecto -->
-            <!-- Ciclo para mostrar cada opción en el select -->
-            @for (estado of estadosCupon; track $index) {
+            <!-- Ciclo para mostrar cada opción en el select de estados -->
+            @for (estado of estadosCupon; track estado) {
               <option [value]="estado">{{ estado }}</option>
             }
           </select>
         </div>
+        
         
         <div class="col-md-6 text-start">
           <label class="form-label">Fecha de Vencimiento</label>
