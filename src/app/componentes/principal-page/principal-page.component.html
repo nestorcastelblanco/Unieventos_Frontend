@@ -173,6 +173,20 @@
     </div>
   </section>
 
+  <!-- Filtro de eventos -->
+  <div class="row mb-4">
+    <div class="col-lg-6 mx-auto">
+      <form (ngSubmit)="filtrarEventos()">
+        <div class="input-group">
+          <input type="text" [(ngModel)]="filtros.nombre" name="nombre" class="form-control" placeholder="Buscar por nombre" aria-label="Nombre del evento">
+          <input type="text" [(ngModel)]="filtros.tipo" name="tipo" class="form-control" placeholder="Buscar por tipo" aria-label="Tipo de evento">
+          <input type="text" [(ngModel)]="filtros.ciudad" name="ciudad" class="form-control" placeholder="Buscar por ciudad" aria-label="Ciudad del evento">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="album py-0 bg-body-tertiary">
     <div class="container">
 
