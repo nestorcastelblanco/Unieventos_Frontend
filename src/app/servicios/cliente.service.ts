@@ -8,6 +8,7 @@ import { CrearEventoDTO } from '../dto/EventoDTOs/CrearEventoDTO';
 import { EventoCarritoDTO } from '../dto/CarritoDTOs/evento-carrito-dto';
 import { EventoEliminarCarritoDTO } from '../dto/CarritoDTOs/evento-eliminar-carrito-dto';
 import { ActualizarItemCarritoDTO } from '../dto/CarritoDTOs/actualizar-item-carrito-dto';
+import { OrdenPagoDTO } from '../dto/OrdenDTOs/orden-pago';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,8 @@ export class ClienteService {
     return this.http.get<MensajeDTO>(`${this.clienteURL}/orden/detalles/{idOrden}`);
   }
 
-  public realizarPago(idOrden: string): Observable<MensajeDTO> {
+  public realizarPago(idOrden: OrdenPagoDTO): Observable<MensajeDTO> {
+    console.log("id de la orden: ", idOrden.idOrden)
     return this.http.post<MensajeDTO>(`${this.clienteURL}/orden/realizar-pago`, idOrden);
   }
     
