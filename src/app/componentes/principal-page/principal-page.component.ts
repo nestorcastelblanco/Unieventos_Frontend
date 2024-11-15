@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './principal-page.component.css'
 })
 export class PrincipalPageComponent {
-  public eventos: EventoDTO[] = []; // Declaración de la variable `eventos`
+
+  public eventos: EventoDTO[] = [];
   public eventosFiltrados: EventoDTO[] = []; // Lista de eventos filtrados
   public filtros = { nombre: '', tipo: '', ciudad: '' }; // Filtros de búsqueda
 
@@ -37,7 +38,6 @@ export class PrincipalPageComponent {
     });
   }
 
-  // Filtra los eventos según los valores de los filtros
   // Filtra los eventos según los valores de los filtros
   public filtrarEventos() {
   // Verifica si todos los filtros están vacíos
