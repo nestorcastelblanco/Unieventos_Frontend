@@ -14,6 +14,7 @@ import { VistaCuponComponent } from './componentes/vista-cupon/vista-cupon.compo
 import { EventosAdminComponent } from './componentes/eventos-admin/eventos-admin.component';
 import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 import { PagosEventoComponent } from './componentes/pagos-evento/pagos-evento.component';
+import { ReportesComponent } from './componentes/reportes/reportes.component';
 import { VistaEventoComponentComponent } from './componentes/vista-evento-component/vista-evento-component.component';
 import { EditarEventoComponent } from './componentes/editar-evento/editar-evento.component';
 import { CrearLocalidadComponent } from './componentes/crear-localidad/crear-localidad.component';
@@ -35,6 +36,7 @@ export const routes: Routes = [
    // Rutas de gestión de eventos
    { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'gestion-eventos', component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+   { path: 'reportes', component: ReportesComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'historial-eventos', component: HistorialEventosComponent },
    { path: 'editar-evento/:id', component: EditarEventoComponent },
 

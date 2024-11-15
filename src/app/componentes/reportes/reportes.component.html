@@ -1,0 +1,45 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Reportes de Compras de Eventos</h2>
+    
+    <!-- Filtros de Reporte -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5>Filtrar Reportes</h5>
+        </div>
+        <div class="card-body">
+            <form (ngSubmit)="generateReport()">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="event">Evento</label>
+                        <select id="event" class="form-control" required [(ngModel)]="event" name="event">
+                            <option value="">Seleccione un evento</option>
+                            @for (event of events; track event) {
+                                <option [value]="event">{{ event }}</option>
+                              } @empty {
+                                <option disabled>No hay eventos disponibles</option>
+                              }
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="dateRange">Rango de Fechas</label>
+                        <input type="date" id="startDate" class="form-control" [(ngModel)]="startDate" name="startDate">
+                        <input type="date" id="endDate" class="form-control mt-2" [(ngModel)]="endDate" name="endDate">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Generar Reporte</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Visualización del Reporte -->
+    @if (showReport) {
+        <div class="card-header">
+            <h5>Reporte de Evento</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>Porcentaje Vendido por Localidad:</strong> {{ percentSold }}%</p>
+            <p><strong>Total Ganado:</strong> ${{ totalEarned }}</p>
+            <button (click)="downloadPDF()" class="btn btn-outline-secondary mt-3">Descargar PDF</button>
+        </div>
+    }
+</div>
