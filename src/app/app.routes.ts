@@ -25,6 +25,7 @@ import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 import { Orden } from './dto/OrdenDTOs/orden';
 import { OrdenComponent } from './componentes/orden/orden.component';
+import { ReportesComponent } from './componentes/reportes/reportes.component';
 
 export const routes: Routes = [
    { path: '', component: PrincipalComponent },  // Ruta inicial
@@ -35,6 +36,9 @@ export const routes: Routes = [
    // Rutas de gestión de eventos
    { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'gestion-eventos', component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
+
+   { path: 'reportes', component: ReportesComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] } },
+
    { path: 'historial-eventos', component: HistorialEventosComponent },
    { path: 'editar-evento/:id', component: EditarEventoComponent },
 

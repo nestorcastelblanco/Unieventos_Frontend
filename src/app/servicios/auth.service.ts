@@ -53,5 +53,8 @@ export class AuthService {
     return this.http.get<MensajeDTO>(`${this.authURL}/cupon/obtener-informacion/${id}`);
   }
   
+  public obtenerHistorialOrdenes(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.authURL}/orden/historial`);
+  }
 }
 
