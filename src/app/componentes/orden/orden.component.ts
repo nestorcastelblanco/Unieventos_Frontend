@@ -58,7 +58,6 @@ export class OrdenComponent implements OnInit {
   }
 
   // Realizar pago de una orden
-      idOrden: idOrden,
 pagarOrden(idOrden: string): void {
   const ordenPagoData: OrdenPagoDTO = {
     idOrden: idOrden,
