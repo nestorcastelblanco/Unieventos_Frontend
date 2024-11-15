@@ -58,18 +58,25 @@ export class OrdenComponent implements OnInit {
   }
 
   // Realizar pago de una orden
-  pagarOrden(idOrden: string): void {
-    const ordenPagoData: OrdenPagoDTO = {
       idOrden: idOrden,
-    };
-    this.clienteService.realizarPago(ordenPagoData).subscribe({
-      next: (data) => {
-        this.url = data.respuesta;
-        console.log('URL de pago:', data.respuesta);
-      },
-      error: (error) => {
-        console.error('Error al procesar el pago: ', error);
-      },
-    });
-  }
+pagarOrden(idOrden: string): void {
+  const ordenPagoData: OrdenPagoDTO = {
+    idOrden: idOrden,
+  };
+  this.clienteService.realizarPago(ordenPagoData).subscribe({
+    next: (data) => {
+      this.url = data.respuesta;
+      if (this.url) { // Verifica si la URL es válida
+        window.location.href = this.url.url; // Asumiendo que `respuesta` es de tipo `MercadoPagoDTO`
+        console.log('URL de pago:', this.url);
+      } else {
+        console.error('La URL de pago es inválida o no se obtuvo correctamente.');
+      }
+    },
+    error: (error) => {
+      console.error('Error al procesar el pago: ', error);
+    },
+  });
+}
+
 }
