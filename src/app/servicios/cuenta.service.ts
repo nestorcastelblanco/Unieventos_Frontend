@@ -11,7 +11,7 @@ import { InformacionCuentaDTO } from '../dto/CuentaDTOs/informacion-cuenta-dto';
 })
 export class CuentaService {
 
-  private authURL = "http://localhost:8080/api/cuenta";
+  private authURL = "https://unieventos.onrender.com/api/cuenta";
 
 
  constructor(private http: HttpClient) { }

@@ -17,7 +17,7 @@ import { TokenDTO } from '../dto/TokenDTOs/token-dto';
 export class PublicoService {
 
 
- private publicoURL = "http://localhost:8080/api/publico";
+ private publicoURL = "https://unieventos.onrender.com/api/publico";
 
 
  constructor(private http: HttpClient) { }

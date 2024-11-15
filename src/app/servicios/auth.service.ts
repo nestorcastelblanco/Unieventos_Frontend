@@ -12,7 +12,7 @@ import { EditarCuponDTO } from '../dto/CuponDTOs/editar-cupon-dto';
 export class AuthService {
 
 
- private authURL = "http://localhost:8080/api/admin";
+ private authURL = "https://unieventos.onrender.com/api/admin";
 
 
  constructor(private http: HttpClient) { }

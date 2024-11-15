@@ -14,7 +14,7 @@ import { ActualizarItemCarritoDTO } from '../dto/CarritoDTOs/actualizar-item-car
 })
 export class ClienteService {
 
-  private clienteURL = "http://localhost:8080/api/cliente";
+  private clienteURL = "https://unieventos.onrender.com/api/cliente";
 
   constructor(private http: HttpClient) { }
 
@@ -49,7 +49,6 @@ export class ClienteService {
   public realizarPago(idOrden: string): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.clienteURL}/orden/realizar-pago`, idOrden);
   }
-
     
   public agregarItemCarrito(eventoCarrito : EventoCarritoDTO): Observable<MensajeDTO> {
     return this.http.post<MensajeDTO>(`${this.clienteURL}/carrito/agregar-item`,eventoCarrito);

@@ -15,8 +15,8 @@ export class AdministradorService {
  
   
 
- private adminURL = "http://localhost:8080/api/admin";
- private publicURL = "http://localhost:8080/api/publico"
+ private adminURL = "https://unieventos.onrender.com/api/admin";
+ private publicURL = "https://unieventos.onrender.com/api/publico"
 
 
  constructor(private http: HttpClient) { }
