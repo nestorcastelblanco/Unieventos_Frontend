@@ -4,6 +4,7 @@ import { ClienteService } from '../../servicios/cliente.service';
 import { MensajeDTO } from '../../dto/TokenDTOs/MensajeDTO';
 import { ItemOrdenDTO } from '../../dto/OrdenDTOs/item-orden-dto';
 import { CommonModule } from '@angular/common';
+import { AdministradorService } from '../../servicios/administrador.service';
 
 @Component({
   selector: 'app-historial-ordenes',
@@ -16,7 +17,7 @@ export class HistorialOrdenesComponent implements OnInit {
   historialOrdenes: ItemOrdenDTO[] = [];
   errorMensaje: string = '';
 
-  constructor(private clienteService: ClienteService) {}
+  constructor(private clienteService: ClienteService, private adminService: AdministradorService) {}
 
   ngOnInit(): void {
     this.cargarHistorialOrdenes();

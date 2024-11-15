@@ -25,8 +25,10 @@ export class AdministradorService {
   console.log("Requesting coupon information for id:", id);
   return this.http.get<MensajeDTO>(`${this.adminURL}/cupon/obtener-informacion/${id}`);
   }
-
-
+  
+  public obtenerHistorialOrdenes(): Observable<MensajeDTO> {
+    return this.http.get<MensajeDTO>(`${this.adminURL}/orden/historial`);
+  }
  public crearEvento(crearEventoDTO: CrearEventoDTO): Observable<MensajeDTO> {
    return this.http.post<MensajeDTO>(`${this.adminURL}/evento/crear`, crearEventoDTO);
  }
@@ -35,21 +37,17 @@ export class AdministradorService {
    return this.http.put<MensajeDTO>(`${this.adminURL}/evento/editar`, editarEventoDTO);
  }
 
-
  public obtenerEvento(id: string): Observable<MensajeDTO> {
    return this.http.get<MensajeDTO>(`${this.adminURL}/evento/obtener/${id}`);
  }
-
 
  public eliminarEvento(id: string): Observable<MensajeDTO> {
    return this.http.delete<MensajeDTO>(`${this.adminURL}/evento/eliminar/${id}`);
  }
 
-
  public listarEventosAdmin(): Observable<MensajeDTO> {
    return this.http.get<MensajeDTO>(`${this.publicURL}/evento/listar`);
  }
-
 
  public subirImagen(imagen: FormData): Observable<MensajeDTO> {
    return this.http.post<MensajeDTO>(`${this.adminURL}/imagen/subir`, imagen);
