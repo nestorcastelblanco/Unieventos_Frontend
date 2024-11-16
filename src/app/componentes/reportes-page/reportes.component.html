@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Reportes</h2>
+
+  <!-- Filtros de Reporte -->
+  <div class="card mb-4">
+      <div class="card-header">
+          <h5>Filtrar Reportes</h5>
+      </div>
+      <div class="card-body">
+          <form [formGroup]="reportForm" (ngSubmit)="generateReport()">
+              <div class="form-row">
+                  <div class="col-md-12 mb-3">
+                      <label for="dateRange">Rango de Fechas</label>
+                      <div class="d-flex">
+                          <input type="datetime-local" id="startDate" class="form-control" formControlName="startDate" required>
+                          <span class="mx-2">a</span>
+                          <input type="datetime-local" id="endDate" class="form-control" formControlName="endDate" required>
+                      </div>
+                  </div>
+              </div>
+              <!-- Centrando el botón -->
+              <div class="text-center">
+                  <button type="submit" class="btn btn-primary" [disabled]="reportForm.invalid">Generar Reporte</button>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <!-- Visualización del Reporte -->
+  @if(showReport) {
+  <div id="reportSection" class="card">
+      <div class="card-header">
+          <h5>Reporte de Órdenes Canceladas</h5>
+      </div>
+      <div class="card-body">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>ID de la Orden</th>
+                      <th>Fecha</th>
+                      <th>Total</th>
+                      <th>Estado</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @for(order of ordersInRange; track $index) {
+                      <tr>
+                          <td>{{ order.id }}</td>
+                          <td>{{ order.fecha }}</td>
+                          <td>${{ order.total }}</td>
+                          <td>{{ order.estado }}</td>
+                      </tr>
+                  }
+              </tbody>
+          </table>
+
+          <!-- Gráfico de Órdenes -->
+          <div class="text-center mt-4">
+              <canvas #ordersChart width="400" height="200"></canvas>
+          </div>
+
+          <div class="text-center">
+              <button (click)="downloadPDF()" class="btn btn-primary">Descargar PDF</button>
+          </div>
+      </div>
+  </div>
+  }
+</div>

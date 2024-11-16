@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { jsPDF } from 'jspdf';
-import { AuthService } from '../../servicios/auth.service';
-import { ClienteService } from '../../servicios/cliente.service';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControlOptions } from '@angular/forms'; // Importa AbstractControlOptions
+import { Router } from '@angular/router';
+import { PublicoService } from '../../servicios/publico.service';
+import { CrearCuentaDTO } from '../../dto/CuentaDTOs/CrearCuentaDTO';
+import Swal from 'sweetalert2';
 import { ItemOrdenDTO } from '../../dto/OrdenDTOs/item-orden-dto';
 import {
   Chart,
@@ -13,12 +14,16 @@ import {
   Title,
   Tooltip,
   Legend
-} from 'chart.js'; // Importar componentes de Chart.js
+} from 'chart.js';
+import { jsPDF } from 'jspdf';
+import { AuthService } from '../../servicios/auth.service';
+
 @Component({
-  selector: 'app-reportes',
+  selector: 'app-registro',
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './reportes.component.html',
+  styleUrls: ['./reportes.component.css'] // Cambiado styleUrl a styleUrls
 })
 export class ReportesComponent implements OnInit, OnDestroy{
   reportForm!: FormGroup;
@@ -31,6 +36,7 @@ export class ReportesComponent implements OnInit, OnDestroy{
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -208,3 +214,4 @@ export class ReportesComponent implements OnInit, OnDestroy{
 }
 
 }
+

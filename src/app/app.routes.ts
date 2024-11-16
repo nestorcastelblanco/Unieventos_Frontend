@@ -25,7 +25,7 @@ import { LoginGuard } from './guards/permiso.service';
 import { RolesGuard } from './guards/roles.service';
 import { Orden } from './dto/OrdenDTOs/orden';
 import { OrdenComponent } from './componentes/orden/orden.component';
-import { ReportesComponent } from './componentes/reportes/reportes.component';
+import { ReportesComponent } from './componentes/reportes-page/reportes.component';
 
 export const routes: Routes = [
    { path: '', component: PrincipalComponent },  // Ruta inicial
