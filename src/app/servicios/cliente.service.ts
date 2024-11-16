@@ -14,6 +14,7 @@ import { OrdenPagoDTO } from '../dto/OrdenDTOs/orden-pago';
   providedIn: 'root'
 })
 export class ClienteService {
+  
 
   private clienteURL = "https://unieventos.onrender.com/api/cliente";
 
@@ -35,6 +36,11 @@ export class ClienteService {
   public obtenerCupon(id: string): Observable<MensajeDTO> {
     console.log("Requesting coupon information for id:", id);
     return this.http.get<MensajeDTO>(`${this.clienteURL}/cupon/obtener-informacion/${id}`);
+  }
+
+  obtenerCuponCarrito(id: string): Observable<MensajeDTO> {
+    console.log("Requesting coupon information for id:", id);
+    return this.http.get<MensajeDTO>(`${this.clienteURL}/cupon/obtener-carrito/${id}`);
   }
 
   public obtenerHistorialOrdenes(): Observable<MensajeDTO> {

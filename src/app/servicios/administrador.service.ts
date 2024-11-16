@@ -44,6 +44,10 @@ export class AdministradorService {
  public eliminarEvento(id: string): Observable<MensajeDTO> {
    return this.http.delete<MensajeDTO>(`${this.adminURL}/evento/eliminar/${id}`);
  }
+ 
+ public eliminarCupon(id: string): Observable<MensajeDTO> {
+  return this.http.delete<MensajeDTO>(`${this.adminURL}/cupon/eliminar/${id}`);
+}
 
  public listarEventosAdmin(): Observable<MensajeDTO> {
    return this.http.get<MensajeDTO>(`${this.publicURL}/evento/listar`);

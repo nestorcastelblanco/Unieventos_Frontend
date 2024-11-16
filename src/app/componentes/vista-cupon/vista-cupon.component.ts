@@ -6,6 +6,7 @@ import { CuponService } from '../../servicios/cupon.service';
 import Swal from 'sweetalert2';
 import { InformacionCuponDTO } from '../../dto/CuponDTOs/informacion-cupon-dto';
 import { CommonModule } from '@angular/common'; 
+import { AdministradorService } from '../../servicios/administrador.service';
 
 @Component({
   selector: 'app-vista-cupon',
@@ -22,6 +23,7 @@ export class VistaCuponComponent implements OnInit {
 
   constructor(
     private cuponService: CuponService, 
+    private adminService: AdministradorService,
     private formBuilder: FormBuilder, 
     private router: Router, 
     private authService: AuthService
@@ -84,7 +86,7 @@ export class VistaCuponComponent implements OnInit {
       confirmButtonText: 'Sí, eliminarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.authService.eliminarCupon(cuponId).subscribe({
+        this.adminService.eliminarCupon(cuponId).subscribe({
           next: (response) => {
             Swal.fire(
               'Eliminado!',

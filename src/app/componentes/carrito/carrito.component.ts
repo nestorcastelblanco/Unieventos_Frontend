@@ -140,7 +140,7 @@ export class CarritoComponent {
 
   aplicarCupon() {
     const codigo = this.cuponForm.get('codigoCupon')?.value;
-    this.clienteService.obtenerCupon(codigo).subscribe({
+    this.clienteService.obtenerCuponCarrito(codigo).subscribe({
       next: (data) => {
         if (data.respuesta) {
           // Calcular el descuento basado en el cupón
