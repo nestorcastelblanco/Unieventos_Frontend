@@ -19,7 +19,6 @@ import {
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './reportes.component.html',
-  styleUrls: ['./reportes.component.css']
 })
 export class ReportesComponent implements OnInit, OnDestroy{
   reportForm!: FormGroup;

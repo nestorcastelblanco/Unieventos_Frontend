@@ -24,7 +24,7 @@ export class HistorialOrdenesComponent implements OnInit {
   }
 
   cargarHistorialOrdenes(): void {
-    this.clienteService.obtenerHistorialOrdenes().subscribe({
+    this.adminService.obtenerHistorialOrdenes().subscribe({
       next: (respuesta: MensajeDTO) => {
         if (!respuesta.error) {
           // Formateamos cada orden para manejar la fecha

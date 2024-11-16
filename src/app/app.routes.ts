@@ -37,7 +37,7 @@ export const routes: Routes = [
    { path: 'crear-evento', component: CrearEventoComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
    { path: 'gestion-eventos', component: GestionEventosComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
 
-   { path: 'reportes', component: ReportesComponent, canActivate: [RolesGuard], data: { expectedRole: ["CLIENTE"] } },
+   { path: 'reportes', component: ReportesComponent, canActivate: [RolesGuard], data: { expectedRole: ["ADMINISTRADOR"] } },
 
    { path: 'historial-eventos', component: HistorialEventosComponent },
    { path: 'editar-evento/:id', component: EditarEventoComponent },
