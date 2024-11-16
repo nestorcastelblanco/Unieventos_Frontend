@@ -15,6 +15,7 @@ export class TokenService {
 
   public setToken(token: string) {
     window.sessionStorage.setItem(TOKEN_KEY, token);
+    console.log("TOKEN: ", this.getToken());
     this.isLoggedInSubject.next(true);  // Emitir que el usuario ha iniciado sesión
   }
 
